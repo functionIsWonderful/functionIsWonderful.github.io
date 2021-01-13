@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>Redux的使用 - 我的普通网站</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="">
+
+
+
+
+
+    <meta name="description" content="&amp;#x7EAF;&amp;#x51FD;&amp;#x6570;&amp;#x7684;&amp;#x7EF4;&amp;#x57FA;&amp;#x767E;&amp;#x79D1;&amp;#x5B9A;&amp;#x4E49;&amp;#xFF1A; &amp;#x5728;&amp;#x7A0B;&amp;#x5E8F;&amp;#x8BBE;&amp;#x8BA1;&amp;#x4E2D;&amp;#xFF0C;&amp;#x82E5;&amp;#x4E00;&amp;#x4E2A;&amp;#x51FD;&amp;#x6570;&amp;#x7B26;&amp;#x5408">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redux的使用">
+<meta property="og:url" content="http://lllqqj.cc/2020-12-%E5%89%8D%E7%AB%AF/React-redux%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="我的普通网站">
+<meta property="og:description" content="&amp;#x7EAF;&amp;#x51FD;&amp;#x6570;&amp;#x7684;&amp;#x7EF4;&amp;#x57FA;&amp;#x767E;&amp;#x79D1;&amp;#x5B9A;&amp;#x4E49;&amp;#xFF1A; &amp;#x5728;&amp;#x7A0B;&amp;#x5E8F;&amp;#x8BBE;&amp;#x8BA1;&amp;#x4E2D;&amp;#xFF0C;&amp;#x82E5;&amp;#x4E00;&amp;#x4E2A;&amp;#x51FD;&amp;#x6570;&amp;#x7B26;&amp;#x5408">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zoujianhua.oss-cn-chengdu.aliyuncs.com/liuqianjun/image-20201224154151376.png">
+<meta property="og:image" content="https://zoujianhua.oss-cn-chengdu.aliyuncs.com/liuqianjun/image-20201224115937658.png">
+<meta property="article:published_time" content="2020-12-24T09:24:53.000Z">
+<meta property="article:modified_time" content="2021-01-13T22:29:36.732Z">
+<meta property="article:author" content="liuqianjun">
+<meta property="article:tag" content="redux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zoujianhua.oss-cn-chengdu.aliyuncs.com/liuqianjun/image-20201224154151376.png">
+<meta name="twitter:creator" content="@纯蓝碳素">
+<meta name="twitter:site" content="https://weibo.com/2006899037">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 5.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="我的普通网站" type="application/atom+xml">
+</head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                <img src="/images/logo.jpg" alt="" height="28">
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">普通归档</a>
+            
+            <a class="navbar-item "
+               href="/categories">小心分类</a>
+            
+            <a class="navbar-item "
+               href="/tags">想要摘除的标签</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="搜索" href="javascript:;">
+                <i class="fa fa-search"></i>
+            </a>
+            
+            
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            Redux的使用
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            
+                <time datetime="2020-12-24T09:24:53.000Z" itemprop="datePublished">12月 24 2020</time>
+            
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="fa fa-folder"></i>
+            <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span>></span><a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/React/">React</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            15 分钟 读完 (约 2178 字)
+        </span>
+        
+        <span id="/2020-12-%E5%89%8D%E7%AB%AF/React-redux%E7%9A%84%E4%BD%BF%E7%94%A8/" class="column is-narrow leancloud_visitors" data-flag-title="Redux的使用">
+            <em class="post-meta-item-text">浏览数:</em>
+            <i class="leancloud-visitors-count">loading</i>
+          </span>
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <h4 id="&#x7EAF;&#x51FD;&#x6570;&#x7684;&#x7EF4;&#x57FA;&#x767E;&#x79D1;&#x5B9A;&#x4E49;&#xFF1A;"><a href="#&#x7EAF;&#x51FD;&#x6570;&#x7684;&#x7EF4;&#x57FA;&#x767E;&#x79D1;&#x5B9A;&#x4E49;&#xFF1A;" class="headerlink" title="&#x7EAF;&#x51FD;&#x6570;&#x7684;&#x7EF4;&#x57FA;&#x767E;&#x79D1;&#x5B9A;&#x4E49;&#xFF1A;"></a><strong>&#x7EAF;&#x51FD;&#x6570;&#x7684;&#x7EF4;&#x57FA;&#x767E;&#x79D1;&#x5B9A;&#x4E49;&#xFF1A;</strong></h4><ul>
+<li><h6 id="&#x5728;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x4E2D;&#xFF0C;&#x82E5;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x7B26;&#x5408;&#x4E00;&#x4E0B;&#x6761;&#x4EF6;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x88AB;&#x79F0;&#x4E3A;&#x7EAF;&#x51FD;&#x6570;&#xFF1A;"><a href="#&#x5728;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x4E2D;&#xFF0C;&#x82E5;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x7B26;&#x5408;&#x4E00;&#x4E0B;&#x6761;&#x4EF6;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x88AB;&#x79F0;&#x4E3A;&#x7EAF;&#x51FD;&#x6570;&#xFF1A;" class="headerlink" title="&#x5728;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x4E2D;&#xFF0C;&#x82E5;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x7B26;&#x5408;&#x4E00;&#x4E0B;&#x6761;&#x4EF6;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x88AB;&#x79F0;&#x4E3A;&#x7EAF;&#x51FD;&#x6570;&#xFF1A;"></a>&#x5728;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x4E2D;&#xFF0C;&#x82E5;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x7B26;&#x5408;&#x4E00;&#x4E0B;&#x6761;&#x4EF6;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x88AB;&#x79F0;&#x4E3A;&#x7EAF;&#x51FD;&#x6570;&#xFF1A;</h6><p>1.&#x6B64;&#x51FD;&#x6570;&#x5728;&#x76F8;&#x540C;&#x7684;&#x8F93;&#x5165;&#x503C;&#x65F6;&#xFF0C;&#x9700;&#x4EA7;&#x751F;&#x76F8;&#x540C;&#x7684;&#x8F93;&#x51FA;&#x3002;&#x51FD;&#x6570;&#x7684;&#x8F93;&#x51FA;&#x548C;&#x8F93;&#x5165;&#x503C;&#x4EE5;&#x5916;&#x7684;&#x5176;&#x4ED6;&#x9690;&#x85CF;&#x4FE1;&#x606F;&#x6216;&#x72B6;&#x6001;&#x65E0;&#x5173;&#xFF0C;&#x4E5F;&#x548C;&#x7531;I/O&#x8BBE;&#x5907;&#x4EA7;&#x751F;&#x7684;&#x5916;&#x90E8;&#x8F93;&#x51FA;&#x65E0;&#x5173;&#x3002;</p>
+<p>2.&#x8BE5;&#x51FD;&#x6570;&#x4E0D;&#x80FD;&#x6709;&#x8BED;&#x4E49;&#x4E0A;&#x53EF;&#x89C2;&#x5BDF;&#x7684;&#x51FD;&#x6570;&#x526F;&#x4F5C;&#x7528;&#xFF0C;&#x8BF8;&#x5982;&#x201C;&#x89E6;&#x53D1;&#x4E8B;&#x4EF6;&#x201D;&#xFF0C;&#x4F7F;&#x8F93;&#x51FA;&#x8BBE;&#x5907;&#x8F93;&#x51FA;&#xFF0C;&#x6216;&#x66F4;&#x6539;&#x8F93;&#x51FA;&#x503C;&#x4EE5;&#x5916;&#x7269;&#x4EF6;&#x7684;&#x5185;&#x5BB9;&#x7B49;&#x3002;</p>
+<a id="more"></a>
+</li>
+<li><h6 id="&#x5F53;&#x7136;&#x4E0A;&#x9762;&#x7684;&#x5B9A;&#x4E49;&#x4F1A;&#x8FC7;&#x4E8E;&#x7684;&#x6666;&#x6DA9;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x7B80;&#x5355;&#x603B;&#x7ED3;&#x4E00;&#x4E0B;&#xFF1A;"><a href="#&#x5F53;&#x7136;&#x4E0A;&#x9762;&#x7684;&#x5B9A;&#x4E49;&#x4F1A;&#x8FC7;&#x4E8E;&#x7684;&#x6666;&#x6DA9;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x7B80;&#x5355;&#x603B;&#x7ED3;&#x4E00;&#x4E0B;&#xFF1A;" class="headerlink" title="&#x5F53;&#x7136;&#x4E0A;&#x9762;&#x7684;&#x5B9A;&#x4E49;&#x4F1A;&#x8FC7;&#x4E8E;&#x7684;&#x6666;&#x6DA9;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x7B80;&#x5355;&#x603B;&#x7ED3;&#x4E00;&#x4E0B;&#xFF1A;"></a>&#x5F53;&#x7136;&#x4E0A;&#x9762;&#x7684;&#x5B9A;&#x4E49;&#x4F1A;&#x8FC7;&#x4E8E;&#x7684;&#x6666;&#x6DA9;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x7B80;&#x5355;&#x603B;&#x7ED3;&#x4E00;&#x4E0B;&#xFF1A;</h6><p>1.&#x786E;&#x5B9A;&#x7684;&#x8F93;&#x5165;&#xFF0C;&#x4E00;&#x5B9A;&#x4F1A;&#x4EA7;&#x751F;&#x786E;&#x5B9A;&#x7684;&#x8F93;&#x51FA;&#xFF1B;</p>
+<p>2.&#x51FD;&#x6570;&#x5728;&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x4E0D;&#x80FD;&#x4EA7;&#x751F;&#x526F;&#x4F5C;&#x7528;&#xFF1B;</p>
+</li>
+</ul>
+<p>&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x6765;&#x770B;&#x51E0;&#x4E2A;&#x51FD;&#x6570;&#x662F;&#x5426;&#x662F;&#x7EAF;&#x51FD;&#x6570;&#xFF1A;<strong>&#x7EAF;&#x51FD;&#x6570;&#x5206;&#x6790;</strong></p>
+<h5 id="&#x6848;&#x4F8B;&#x4E00;&#xFF1A;"><a href="#&#x6848;&#x4F8B;&#x4E00;&#xFF1A;" class="headerlink" title="&#x6848;&#x4F8B;&#x4E00;&#xFF1A;"></a>&#x6848;&#x4F8B;&#x4E00;&#xFF1A;</h5><p> &#x5F88;&#x660E;&#x663E;&#xFF0C;&#x4E0B;&#x9762;&#x7684;&#x51FD;&#x6570;&#x662F;&#x4E00;&#x4E2A;&#x7EAF;&#x51FD;&#x6570;&#xFF1B;</p>
+<p> &#x5B83;&#x7684;&#x8F93;&#x51FA;&#x662F;&#x4F9D;&#x8D56;&#x6211;&#x4EEC;&#x7684;&#x8F93;&#x5165;&#x5185;&#x5BB9;&#xFF0C;&#x5E76;&#x4E14;&#x4E2D;&#x95F4;&#x6CA1;&#x6709;&#x4EA7;&#x751F;&#x4EFB;&#x4F55;&#x526F;&#x4F5C;&#x7528;&#xFF1B;</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">num1, num2</span>) </span>{</span><br><span class="line">    <span class="hljs-keyword">return</span> num1 + num2</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="&#x6848;&#x4F8B;&#x4E8C;&#xFF1A;"><a href="#&#x6848;&#x4F8B;&#x4E8C;&#xFF1A;" class="headerlink" title="&#x6848;&#x4F8B;&#x4E8C;&#xFF1A;"></a>&#x6848;&#x4F8B;&#x4E8C;&#xFF1A;</h5><p> add&#x51FD;&#x6570;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x7EAF;&#x51FD;&#x6570;&#xFF1B;</p>
+<p>&#x51FD;&#x6570;&#x4F9D;&#x8D56;&#x4E00;&#x4E2A;&#x5916;&#x90E8;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x53D8;&#x91CF;&#x53D1;&#x751F;&#x6539;&#x53D8;&#x65F6;&#xFF0C;&#x4F1A;&#x5F71;&#x54CD;&#xFF1A;&#x786E;&#x5B9A;&#x7684;&#x8F93;&#x5165;&#xFF0C;&#x4EA7;&#x751F;&#x786E;&#x5B9A;&#x7684;&#x8F93;&#x51FA;&#xFF1B;</p>
+<p>&#x80FD;&#x5426;&#x6539;&#x8FDB;&#x6210;&#x7EAF;&#x51FD;&#x6570;&#x5462;&#xFF1F; const foo = 5; &#x5373;&#x53EF;</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> foo = <span class="hljs-number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">num</span>) </span>{</span><br><span class="line">    <span class="hljs-keyword">return</span> num + foo</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+<h4 id="React&#x4E2D;&#x7684;&#x7EAF;&#x51FD;&#x6570;"><a href="#React&#x4E2D;&#x7684;&#x7EAF;&#x51FD;&#x6570;" class="headerlink" title="React&#x4E2D;&#x7684;&#x7EAF;&#x51FD;&#x6570;"></a><strong>React&#x4E2D;&#x7684;&#x7EAF;&#x51FD;&#x6570;</strong></h4><p>&#x5F53;&#x7136;&#x7EAF;&#x51FD;&#x6570;&#x8FD8;&#x6709;&#x5F88;&#x591A;&#x7684;&#x53D8;&#x79CD;&#xFF0C;&#x4F46;&#x662F;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x7406;&#x89E3;&#x5B83;&#x7684;&#x6838;&#x5FC3;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;</p>
+<p>&#x4E3A;&#x4EC0;&#x4E48;&#x7EAF;&#x51FD;&#x6570;&#x5728;&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x4E2D;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x5462;&#xFF1F;</p>
+<p>&#x200B;    1.&#x56E0;&#x4E3A;&#x4F60;&#x53EF;&#x4EE5;&#x5B89;&#x5FC3;&#x7684;&#x5199;&#x548C;&#x5B89;&#x5FC3;&#x7684;&#x7528;&#xFF1B;</p>
+<p>&#x200B;    2.&#x4F60;&#x5728;&#x5199;&#x7684;&#x65F6;&#x5019;&#x4FDD;&#x8BC1;&#x4E86;&#x51FD;&#x6570;&#x7684;&#x7EAF;&#x5EA6;&#xFF0C;&#x53EA;&#x662F;&#x4F46;&#x662F;&#x5B9E;&#x73B0;&#x81EA;&#x5DF1;&#x7684;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x5373;&#x53EF;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x5173;&#x5FC3;&#x4F20;&#x5165;&#x7684;&#x5185;&#x5BB9;&#x6216;&#x8005;&#x4F9D;&#x8D56;&#x5176;&#x4ED6;&#x7684;&#x5916;&#x90E8;&#x53D8;&#x91CF;&#xFF1B;</p>
+<p>&#x200B;    3.&#x4F60;&#x5728;&#x7528;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F60;&#x786E;&#x5B9A;&#x4F60;&#x7684;&#x8F93;&#x5165;&#x5185;&#x5BB9;&#x4E0D;&#x4F1A;&#x88AB;&#x4EFB;&#x610F;&#x7BE1;&#x6539;&#xFF0C;&#x5E76;&#x4E14;&#x81EA;&#x5DF1;&#x786E;&#x5B9A;&#x7684;&#x8F93;&#x5165;&#xFF0C;&#x4E00;&#x5B9A;&#x4F1A;&#x6709;&#x786E;&#x5B9A;&#x7684;&#x8F93;&#x51FA;&#xFF1B;</p>
+<p>React&#x4E2D;&#x5C31;&#x8981;&#x6C42;&#x6211;&#x4EEC;&#x65E0;&#x8BBA;&#x662F;&#x51FD;&#x6570;&#x8FD8;&#x662F;class&#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#xFF0C;&#x8FD9;&#x4E2A;&#x7EC4;&#x4EF6;&#x90FD;&#x5FC5;&#x987B;&#x50CF;&#x7EAF;&#x51FD;&#x6570;&#x4E00;&#x6837;&#xFF0C;&#x4FDD;&#x62A4;&#x5B83;&#x4EEC;&#x7684;props&#x4E0D;&#x88AB;&#x4FEE;&#x6539;&#xFF1A;</p>
+<p><a target="_blank" rel="noopener" href="https://zh-hans.reactjs.org/docs/components-and-props.html#props-are-read-only">https://zh-hans.reactjs.org/docs/components-and-props.html#props-are-read-only</a></p>
+<p>&#x5B66;&#x4E60;redux&#x4E2D;&#xFF0C;reducer&#x4E5F;&#x88AB;&#x8981;&#x6C42;&#x662F;&#x4E00;&#x4E2A;&#x7EAF;&#x51FD;&#x6570;&#x3002;</p>
+<h4 id="&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;redux"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;redux" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;redux"></a><strong>&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;redux</strong></h4><ul>
+<li><h6 id="JavaScript&#x5F00;&#x53D1;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x5DF2;&#x7ECF;&#x53D8;&#x5F97;&#x8D8A;&#x6765;&#x8D8A;&#x590D;&#x6742;&#x4E86;&#xFF1A;"><a href="#JavaScript&#x5F00;&#x53D1;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x5DF2;&#x7ECF;&#x53D8;&#x5F97;&#x8D8A;&#x6765;&#x8D8A;&#x590D;&#x6742;&#x4E86;&#xFF1A;" class="headerlink" title="JavaScript&#x5F00;&#x53D1;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x5DF2;&#x7ECF;&#x53D8;&#x5F97;&#x8D8A;&#x6765;&#x8D8A;&#x590D;&#x6742;&#x4E86;&#xFF1A;"></a>JavaScript&#x5F00;&#x53D1;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x5DF2;&#x7ECF;&#x53D8;&#x5F97;&#x8D8A;&#x6765;&#x8D8A;&#x590D;&#x6742;&#x4E86;&#xFF1A;</h6><p>1.JavaScript&#x9700;&#x8981;&#x7BA1;&#x7406;&#x7684;&#x72B6;&#x6001;&#x8D8A;&#x6765;&#x8D8A;&#x591A;&#xFF0C;&#x8D8A;&#x6765;&#x8D8A;&#x590D;&#x6742;&#xFF1B; </p>
+<p>2.&#x8FD9;&#x4E9B;&#x72B6;&#x6001;&#x5305;&#x62EC;&#x670D;&#x52A1;&#x5668;&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#x3001;&#x7F13;&#x5B58;&#x6570;&#x636E;&#x3001;&#x7528;&#x6237;&#x64CD;&#x4F5C;&#x4EA7;&#x751F;&#x7684;&#x6570;&#x636E;&#x7B49;&#x7B49;&#xFF0C;&#x4E5F;&#x5305;&#x62EC;&#x4E00;&#x4E9B;UI&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x6BD4;&#x5982;&#x67D0;&#x4E9B;&#x5143;&#x7D20;&#x662F;&#x5426;&#x88AB;&#x9009;&#x4E2D;&#xFF0C;&#x662F;&#x5426;&#x663E;&#x793A;&#x52A0;&#x8F7D;&#x52A8;&#x6548;&#xFF0C;&#x5F53;&#x524D;&#x5206;&#x9875;&#xFF1B; </p>
+</li>
+<li><h6 id="&#x7BA1;&#x7406;&#x4E0D;&#x65AD;&#x53D8;&#x5316;&#x7684;state&#x662F;&#x975E;&#x5E38;&#x56F0;&#x96BE;&#x7684;&#xFF1A;"><a href="#&#x7BA1;&#x7406;&#x4E0D;&#x65AD;&#x53D8;&#x5316;&#x7684;state&#x662F;&#x975E;&#x5E38;&#x56F0;&#x96BE;&#x7684;&#xFF1A;" class="headerlink" title="&#x7BA1;&#x7406;&#x4E0D;&#x65AD;&#x53D8;&#x5316;&#x7684;state&#x662F;&#x975E;&#x5E38;&#x56F0;&#x96BE;&#x7684;&#xFF1A;"></a>&#x7BA1;&#x7406;&#x4E0D;&#x65AD;&#x53D8;&#x5316;&#x7684;state&#x662F;&#x975E;&#x5E38;&#x56F0;&#x96BE;&#x7684;&#xFF1A;</h6><p>1.&#x72B6;&#x6001;&#x4E4B;&#x95F4;&#x76F8;&#x4E92;&#x4F1A;&#x5B58;&#x5728;&#x4F9D;&#x8D56;&#xFF0C;&#x4E00;&#x4E2A;&#x72B6;&#x6001;&#x7684;&#x53D8;&#x5316;&#x4F1A;&#x5F15;&#x8D77;&#x53E6;&#x4E00;&#x4E2A;&#x72B6;&#x6001;&#x7684;&#x53D8;&#x5316;&#xFF0C;View&#x9875;&#x9762;&#x4E5F;&#x6709;&#x53EF;&#x80FD;&#x4F1A;&#x5F15;&#x8D77;&#x72B6;&#x6001;&#x7684;&#x53D8;&#x5316;&#xFF1B; </p>
+<p>2.&#x5F53;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x590D;&#x6742;&#x65F6;&#xFF0C;state&#x5728;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#xFF0C;&#x56E0;&#x4E3A;&#x4EC0;&#x4E48;&#x539F;&#x56E0;&#x800C;&#x53D1;&#x751F;&#x4E86;&#x53D8;&#x5316;&#xFF0C;&#x53D1;&#x751F;&#x4E86;&#x600E;&#x4E48;&#x6837;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x4F1A;&#x53D8;&#x5F97;&#x975E;&#x5E38;&#x96BE;&#x4EE5;&#x63A7;&#x5236;&#x548C;&#x8FFD;&#x8E2A;&#xFF1B; </p>
+</li>
+<li><h6 id="React&#x662F;&#x5728;&#x89C6;&#x56FE;&#x5C42;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x89E3;&#x51B3;&#x4E86;DOM&#x7684;&#x6E32;&#x67D3;&#x8FC7;&#x7A0B;&#xFF0C;&#x4F46;&#x662F;State&#x4F9D;&#x7136;&#x662F;&#x7559;&#x7ED9;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x6765;&#x7BA1;&#x7406;&#xFF1A;"><a href="#React&#x662F;&#x5728;&#x89C6;&#x56FE;&#x5C42;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x89E3;&#x51B3;&#x4E86;DOM&#x7684;&#x6E32;&#x67D3;&#x8FC7;&#x7A0B;&#xFF0C;&#x4F46;&#x662F;State&#x4F9D;&#x7136;&#x662F;&#x7559;&#x7ED9;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x6765;&#x7BA1;&#x7406;&#xFF1A;" class="headerlink" title="React&#x662F;&#x5728;&#x89C6;&#x56FE;&#x5C42;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x89E3;&#x51B3;&#x4E86;DOM&#x7684;&#x6E32;&#x67D3;&#x8FC7;&#x7A0B;&#xFF0C;&#x4F46;&#x662F;State&#x4F9D;&#x7136;&#x662F;&#x7559;&#x7ED9;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x6765;&#x7BA1;&#x7406;&#xFF1A;"></a>React&#x662F;&#x5728;&#x89C6;&#x56FE;&#x5C42;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x89E3;&#x51B3;&#x4E86;DOM&#x7684;&#x6E32;&#x67D3;&#x8FC7;&#x7A0B;&#xFF0C;&#x4F46;&#x662F;State&#x4F9D;&#x7136;&#x662F;&#x7559;&#x7ED9;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x6765;&#x7BA1;&#x7406;&#xFF1A;</h6><p>1.&#x65E0;&#x8BBA;&#x662F;&#x7EC4;&#x4EF6;&#x5B9A;&#x4E49;&#x81EA;&#x5DF1;&#x7684;state&#xFF0C;&#x8FD8;&#x662F;&#x7EC4;&#x4EF6;&#x4E4B;&#x95F4;&#x7684;&#x901A;&#x4FE1;&#x901A;&#x8FC7;props&#x8FDB;&#x884C;&#x4F20;&#x9012;&#xFF1B;&#x4E5F;&#x5305;&#x62EC;&#x901A;&#x8FC7;Context&#x8FDB;&#x884C;&#x6570;&#x636E;&#x4E4B;&#x95F4;&#x7684;&#x5171;&#x4EAB;&#xFF1B; </p>
+<p>2.React&#x4E3B;&#x8981;&#x8D1F;&#x8D23;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x7BA1;&#x7406;&#x89C6;&#x56FE;&#xFF0C;state&#x5982;&#x4F55;&#x7EF4;&#x62A4;&#x6700;&#x7EC8;&#x8FD8;&#x662F;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x6765;&#x51B3;&#x5B9A;&#xFF1B;</p>
+<p><img src="https://zoujianhua.oss-cn-chengdu.aliyuncs.com/liuqianjun/image-20201224154151376.png"></p>
+</li>
+<li><h6 id="Redux&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x7BA1;&#x7406;State&#x7684;&#x5BB9;&#x5668;&#xFF1A;Redux&#x662F;JavaScript&#x7684;&#x72B6;&#x6001;&#x5BB9;&#x5668;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x53EF;&#x9884;&#x6D4B;&#x7684;&#x72B6;&#x6001;&#x7BA1;&#x7406;&#xFF1B;"><a href="#Redux&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x7BA1;&#x7406;State&#x7684;&#x5BB9;&#x5668;&#xFF1A;Redux&#x662F;JavaScript&#x7684;&#x72B6;&#x6001;&#x5BB9;&#x5668;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x53EF;&#x9884;&#x6D4B;&#x7684;&#x72B6;&#x6001;&#x7BA1;&#x7406;&#xFF1B;" class="headerlink" title="Redux&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x7BA1;&#x7406;State&#x7684;&#x5BB9;&#x5668;&#xFF1A;Redux&#x662F;JavaScript&#x7684;&#x72B6;&#x6001;&#x5BB9;&#x5668;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x53EF;&#x9884;&#x6D4B;&#x7684;&#x72B6;&#x6001;&#x7BA1;&#x7406;&#xFF1B;"></a>Redux&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x7BA1;&#x7406;State&#x7684;&#x5BB9;&#x5668;&#xFF1A;Redux&#x662F;JavaScript&#x7684;&#x72B6;&#x6001;&#x5BB9;&#x5668;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x53EF;&#x9884;&#x6D4B;&#x7684;&#x72B6;&#x6001;&#x7BA1;&#x7406;&#xFF1B;</h6></li>
+<li><h6 id="Redux&#x9664;&#x4E86;&#x548C;React&#x4E00;&#x8D77;&#x4F7F;&#x7528;&#x4E4B;&#x5916;&#xFF0C;&#x5B83;&#x4E5F;&#x53EF;&#x4EE5;&#x548C;&#x5176;&#x4ED6;&#x754C;&#x9762;&#x5E93;&#x4E00;&#x8D77;&#x6765;&#x4F7F;&#x7528;&#xFF08;&#x6BD4;&#x5982;Vue&#xFF09;&#xFF0C;&#x5E76;&#x4E14;&#x5B83;&#x975E;&#x5E38;&#x5C0F;&#xFF08;&#x5305;&#x62EC;&#x4F9D;&#x8D56;&#x5728;&#x5185;&#xFF0C;&#x53EA;&#x6709;2kb&#xFF09;"><a href="#Redux&#x9664;&#x4E86;&#x548C;React&#x4E00;&#x8D77;&#x4F7F;&#x7528;&#x4E4B;&#x5916;&#xFF0C;&#x5B83;&#x4E5F;&#x53EF;&#x4EE5;&#x548C;&#x5176;&#x4ED6;&#x754C;&#x9762;&#x5E93;&#x4E00;&#x8D77;&#x6765;&#x4F7F;&#x7528;&#xFF08;&#x6BD4;&#x5982;Vue&#xFF09;&#xFF0C;&#x5E76;&#x4E14;&#x5B83;&#x975E;&#x5E38;&#x5C0F;&#xFF08;&#x5305;&#x62EC;&#x4F9D;&#x8D56;&#x5728;&#x5185;&#xFF0C;&#x53EA;&#x6709;2kb&#xFF09;" class="headerlink" title="Redux&#x9664;&#x4E86;&#x548C;React&#x4E00;&#x8D77;&#x4F7F;&#x7528;&#x4E4B;&#x5916;&#xFF0C;&#x5B83;&#x4E5F;&#x53EF;&#x4EE5;&#x548C;&#x5176;&#x4ED6;&#x754C;&#x9762;&#x5E93;&#x4E00;&#x8D77;&#x6765;&#x4F7F;&#x7528;&#xFF08;&#x6BD4;&#x5982;Vue&#xFF09;&#xFF0C;&#x5E76;&#x4E14;&#x5B83;&#x975E;&#x5E38;&#x5C0F;&#xFF08;&#x5305;&#x62EC;&#x4F9D;&#x8D56;&#x5728;&#x5185;&#xFF0C;&#x53EA;&#x6709;2kb&#xFF09;"></a>Redux&#x9664;&#x4E86;&#x548C;React&#x4E00;&#x8D77;&#x4F7F;&#x7528;&#x4E4B;&#x5916;&#xFF0C;&#x5B83;&#x4E5F;&#x53EF;&#x4EE5;&#x548C;&#x5176;&#x4ED6;&#x754C;&#x9762;&#x5E93;&#x4E00;&#x8D77;&#x6765;&#x4F7F;&#x7528;&#xFF08;&#x6BD4;&#x5982;Vue&#xFF09;&#xFF0C;&#x5E76;&#x4E14;&#x5B83;&#x975E;&#x5E38;&#x5C0F;&#xFF08;&#x5305;&#x62EC;&#x4F9D;&#x8D56;&#x5728;&#x5185;&#xFF0C;&#x53EA;&#x6709;2kb&#xFF09;</h6></li>
+</ul>
+<h4 id="Redux&#x7684;&#x6838;&#x5FC3;&#x7406;&#x5FF5;-Store"><a href="#Redux&#x7684;&#x6838;&#x5FC3;&#x7406;&#x5FF5;-Store" class="headerlink" title="Redux&#x7684;&#x6838;&#x5FC3;&#x7406;&#x5FF5; - Store"></a><strong>Redux&#x7684;&#x6838;&#x5FC3;&#x7406;&#x5FF5; - Store</strong></h4><ul>
+<li><h6 id="Redux&#x7684;&#x6838;&#x5FC3;&#x7406;&#x5FF5;&#x975E;&#x5E38;&#x7B80;&#x5355;&#x3002;"><a href="#Redux&#x7684;&#x6838;&#x5FC3;&#x7406;&#x5FF5;&#x975E;&#x5E38;&#x7B80;&#x5355;&#x3002;" class="headerlink" title="Redux&#x7684;&#x6838;&#x5FC3;&#x7406;&#x5FF5;&#x975E;&#x5E38;&#x7B80;&#x5355;&#x3002;"></a>Redux&#x7684;&#x6838;&#x5FC3;&#x7406;&#x5FF5;&#x975E;&#x5E38;&#x7B80;&#x5355;&#x3002;</h6></li>
+<li><h6 id="&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x6709;&#x4E00;&#x4E2A;&#x670B;&#x53CB;&#x5217;&#x8868;&#x9700;&#x8981;&#x7BA1;&#x7406;&#xFF1A;"><a href="#&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x6709;&#x4E00;&#x4E2A;&#x670B;&#x53CB;&#x5217;&#x8868;&#x9700;&#x8981;&#x7BA1;&#x7406;&#xFF1A;" class="headerlink" title="&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x6709;&#x4E00;&#x4E2A;&#x670B;&#x53CB;&#x5217;&#x8868;&#x9700;&#x8981;&#x7BA1;&#x7406;&#xFF1A;"></a>&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x6709;&#x4E00;&#x4E2A;&#x670B;&#x53CB;&#x5217;&#x8868;&#x9700;&#x8981;&#x7BA1;&#x7406;&#xFF1A;</h6><p>1.&#x5982;&#x679C;&#x6211;&#x4EEC;&#x6CA1;&#x6709;&#x5B9A;&#x4E49;&#x7EDF;&#x4E00;&#x7684;&#x89C4;&#x8303;&#x6765;&#x64CD;&#x4F5C;&#x8FD9;&#x6BB5;&#x6570;&#x636E;&#xFF0C;&#x90A3;&#x4E48;&#x6574;&#x4E2A;&#x6570;&#x636E;&#x7684;&#x53D8;&#x5316;&#x5C31;&#x662F;&#x65E0;&#x6CD5;&#x8DDF;&#x8E2A;&#x7684;&#xFF1B;</p>
+<p>2.&#x6BD4;&#x5982;&#x9875;&#x9762;&#x7684;&#x67D0;&#x5904;&#x901A;&#x8FC7;products.push&#x7684;&#x65B9;&#x5F0F;&#x589E;&#x52A0;&#x4E86;&#x4E00;&#x6761;&#x6570;&#x636E;&#xFF1B; </p>
+<p>3.&#x6BD4;&#x5982;&#x53E6;&#x4E00;&#x4E2A;&#x9875;&#x9762;&#x901A;&#x8FC7;products[0].age = 25&#x4FEE;&#x6539;&#x4E86;&#x4E00;&#x6761;&#x6570;&#x636E;&#xFF1B; </p>
+</li>
+<li><h6 id="&#x6574;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x9519;&#x7EFC;&#x590D;&#x6742;&#xFF0C;&#x5F53;&#x51FA;&#x73B0;bug&#x65F6;&#xFF0C;&#x5F88;&#x96BE;&#x8DDF;&#x8E2A;&#x5230;&#x5E95;&#x54EA;&#x91CC;&#x53D1;&#x751F;&#x7684;&#x53D8;&#x5316;&#xFF1B;"><a href="#&#x6574;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x9519;&#x7EFC;&#x590D;&#x6742;&#xFF0C;&#x5F53;&#x51FA;&#x73B0;bug&#x65F6;&#xFF0C;&#x5F88;&#x96BE;&#x8DDF;&#x8E2A;&#x5230;&#x5E95;&#x54EA;&#x91CC;&#x53D1;&#x751F;&#x7684;&#x53D8;&#x5316;&#xFF1B;" class="headerlink" title="&#x6574;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x9519;&#x7EFC;&#x590D;&#x6742;&#xFF0C;&#x5F53;&#x51FA;&#x73B0;bug&#x65F6;&#xFF0C;&#x5F88;&#x96BE;&#x8DDF;&#x8E2A;&#x5230;&#x5E95;&#x54EA;&#x91CC;&#x53D1;&#x751F;&#x7684;&#x53D8;&#x5316;&#xFF1B;"></a>&#x6574;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x9519;&#x7EFC;&#x590D;&#x6742;&#xFF0C;&#x5F53;&#x51FA;&#x73B0;bug&#x65F6;&#xFF0C;&#x5F88;&#x96BE;&#x8DDF;&#x8E2A;&#x5230;&#x5E95;&#x54EA;&#x91CC;&#x53D1;&#x751F;&#x7684;&#x53D8;&#x5316;&#xFF1B;</h6></li>
+</ul>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> initialState = {</span><br><span class="line">    friends: [</span><br><span class="line">        { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Lilei&quot;</span>,<span class="hljs-attr">age</span>: <span class="hljs-number">18</span> },</span><br><span class="line">        { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Hanmeimei&quot;</span>,<span class="hljs-attr">age</span>: <span class="hljs-number">20</span> },</span><br><span class="line">        { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Tom&quot;</span>,<span class="hljs-attr">age</span>: <span class="hljs-number">35</span> },</span><br><span class="line">    ]</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+
+<h4 id="Redux&#x7684;&#x6838;&#x5FC3;&#x7406;&#x5FF5;-action"><a href="#Redux&#x7684;&#x6838;&#x5FC3;&#x7406;&#x5FF5;-action" class="headerlink" title="Redux&#x7684;&#x6838;&#x5FC3;&#x7406;&#x5FF5; - action"></a><strong>Redux&#x7684;&#x6838;&#x5FC3;&#x7406;&#x5FF5; - action</strong></h4><ul>
+<li><h6 id="Redux&#x8981;&#x6C42;&#x6211;&#x4EEC;&#x901A;&#x8FC7;action&#x6765;&#x66F4;&#x65B0;&#x6570;&#x636E;&#xFF1A;"><a href="#Redux&#x8981;&#x6C42;&#x6211;&#x4EEC;&#x901A;&#x8FC7;action&#x6765;&#x66F4;&#x65B0;&#x6570;&#x636E;&#xFF1A;" class="headerlink" title="Redux&#x8981;&#x6C42;&#x6211;&#x4EEC;&#x901A;&#x8FC7;action&#x6765;&#x66F4;&#x65B0;&#x6570;&#x636E;&#xFF1A;"></a>Redux&#x8981;&#x6C42;&#x6211;&#x4EEC;&#x901A;&#x8FC7;action&#x6765;&#x66F4;&#x65B0;&#x6570;&#x636E;&#xFF1A;</h6><p>1.&#x6240;&#x6709;&#x6570;&#x636E;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x5FC5;&#x987B;&#x901A;&#x8FC7;&#x6D3E;&#x53D1;&#xFF08;dispatch&#xFF09;action&#x6765;&#x66F4;&#x65B0;&#xFF1B; </p>
+<p>2.action&#x662F;&#x4E00;&#x4E2A;&#x666E;&#x901A;&#x7684;JavaScript&#x5BF9;&#x8C61;&#xFF0C;&#x7528;&#x6765;&#x63CF;&#x8FF0;&#x8FD9;&#x6B21;&#x66F4;&#x65B0;&#x7684;type&#x548C;content&#xFF1B; </p>
+</li>
+<li><h6 id="&#x6BD4;&#x5982;&#x4E0B;&#x9762;&#x5C31;&#x662F;&#x51E0;&#x4E2A;&#x66F4;&#x65B0;friends&#x7684;action&#xFF1A;"><a href="#&#x6BD4;&#x5982;&#x4E0B;&#x9762;&#x5C31;&#x662F;&#x51E0;&#x4E2A;&#x66F4;&#x65B0;friends&#x7684;action&#xFF1A;" class="headerlink" title="&#x6BD4;&#x5982;&#x4E0B;&#x9762;&#x5C31;&#x662F;&#x51E0;&#x4E2A;&#x66F4;&#x65B0;friends&#x7684;action&#xFF1A;"></a>&#x6BD4;&#x5982;&#x4E0B;&#x9762;&#x5C31;&#x662F;&#x51E0;&#x4E2A;&#x66F4;&#x65B0;friends&#x7684;action&#xFF1A;</h6><p>1.&#x5F3A;&#x5236;&#x4F7F;&#x7528;action&#x7684;&#x597D;&#x5904;&#x662F;&#x53EF;&#x4EE5;&#x6E05;&#x6670;&#x7684;&#x77E5;&#x9053;&#x6570;&#x636E;&#x5230;&#x5E95;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x6570;&#x636E;&#x53D8;&#x5316;&#x90FD;&#x662F;&#x53EF;&#x8DDF;&#x8FFD;&#x3001;&#x53EF;&#x9884;&#x6D4B;&#x7684;&#xFF1B;</p>
+<p>2.&#x5F53;&#x7136;&#xFF0C;&#x76EE;&#x524D;&#x6211;&#x4EEC;&#x7684;action&#x662F;&#x56FA;&#x5B9A;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x771F;&#x5B9E;&#x5E94;&#x7528;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x4F1A;&#x901A;&#x8FC7;&#x51FD;&#x6570;&#x6765;&#x5B9A;&#x4E49;&#xFF0C;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;action&#xFF1B;</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> action1 = { <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;ADD_FRIEND&quot;</span>, <span class="hljs-attr">info</span>: { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;lucy&quot;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">20</span> } }</span><br><span class="line"><span class="hljs-keyword">const</span> action2 = { <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;INC_AGE&quot;</span>, <span class="hljs-attr">info</span>: <span class="hljs-number">0</span> }</span><br><span class="line"><span class="hljs-keyword">const</span> action3 = { <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;CHANGE_NAME&quot;</span>, <span class="hljs-attr">playload</span>: { <span class="hljs-attr">index</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">newName</span>: <span class="hljs-string">&quot;huahua&quot;</span> } }</span><br></pre></td></tr></tbody></table></figure>
+
+
+</li>
+</ul>
+<h4 id="Redux&#x7684;&#x6838;&#x5FC3;&#x7406;&#x5FF5;-reducer"><a href="#Redux&#x7684;&#x6838;&#x5FC3;&#x7406;&#x5FF5;-reducer" class="headerlink" title="Redux&#x7684;&#x6838;&#x5FC3;&#x7406;&#x5FF5; - reducer"></a><strong>Redux&#x7684;&#x6838;&#x5FC3;&#x7406;&#x5FF5; - reducer</strong></h4><ul>
+<li><h6 id="&#x4F46;&#x662F;&#x5982;&#x4F55;&#x5C06;state&#x548C;action&#x8054;&#x7CFB;&#x5728;&#x4E00;&#x8D77;&#x5462;&#xFF1F;&#x7B54;&#x6848;&#x5C31;&#x662F;reducer"><a href="#&#x4F46;&#x662F;&#x5982;&#x4F55;&#x5C06;state&#x548C;action&#x8054;&#x7CFB;&#x5728;&#x4E00;&#x8D77;&#x5462;&#xFF1F;&#x7B54;&#x6848;&#x5C31;&#x662F;reducer" class="headerlink" title="&#x4F46;&#x662F;&#x5982;&#x4F55;&#x5C06;state&#x548C;action&#x8054;&#x7CFB;&#x5728;&#x4E00;&#x8D77;&#x5462;&#xFF1F;&#x7B54;&#x6848;&#x5C31;&#x662F;reducer"></a>&#x4F46;&#x662F;&#x5982;&#x4F55;&#x5C06;state&#x548C;action&#x8054;&#x7CFB;&#x5728;&#x4E00;&#x8D77;&#x5462;&#xFF1F;&#x7B54;&#x6848;&#x5C31;&#x662F;reducer</h6><p> 1.reducer&#x662F;&#x4E00;&#x4E2A;&#x7EAF;&#x51FD;&#x6570;&#xFF1B;</p>
+<p> 2.reducer&#x505A;&#x7684;&#x4E8B;&#x60C5;&#x5C31;&#x662F;&#x5C06;&#x4F20;&#x5165;&#x7684;state&#x548C;action&#x7ED3;&#x5408;&#x8D77;&#x6765;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x65B0;&#x7684;state&#xFF1B;</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reducer</span>(<span class="hljs-params">state = initialState, action</span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">switch</span> (action.type) {</span><br><span class="line">    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;ADD_FRIEND&quot;</span>:</span><br><span class="line">      <span class="hljs-keyword">return</span> { ...state, <span class="hljs-attr">friends</span>: [...state.friends, action.info] };</span><br><span class="line">    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;INC_AGE&quot;</span>:</span><br><span class="line">      <span class="hljs-keyword">return</span> { </span><br><span class="line">      	...state, <span class="hljs-attr">friends</span>: state.friends.map(<span class="hljs-function">(<span class="hljs-params">item,index</span>) =&gt;</span> {</span><br><span class="line">          <span class="hljs-keyword">if</span> (index === action.index) {</span><br><span class="line">              <span class="hljs-keyword">return</span> { ...item, <span class="hljs-attr">age</span>: item.age + <span class="hljs-number">1</span>}</span><br><span class="line">          }</span><br><span class="line">            <span class="hljs-keyword">return</span> item;</span><br><span class="line">        })</span><br><span class="line">      };</span><br><span class="line">    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;CHANGE_NAME&quot;</span>:</span><br><span class="line">       <span class="hljs-keyword">return</span> { </span><br><span class="line">      	...state, <span class="hljs-attr">friends</span>: state.friends.map(<span class="hljs-function">(<span class="hljs-params">item,index</span>) =&gt;</span> {</span><br><span class="line">          <span class="hljs-keyword">if</span> (index === action.index) {</span><br><span class="line">              <span class="hljs-keyword">return</span> { ...item, <span class="hljs-attr">name</span>: action.newName}</span><br><span class="line">          }</span><br><span class="line">            <span class="hljs-keyword">return</span> item;</span><br><span class="line">        })</span><br><span class="line">      };</span><br><span class="line">   </span><br><span class="line">    <span class="hljs-keyword">default</span>:</span><br><span class="line">      <span class="hljs-keyword">return</span> state;</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+</li>
+</ul>
+<h4 id="Redux&#x7684;&#x4E09;&#x5927;&#x539F;&#x5219;"><a href="#Redux&#x7684;&#x4E09;&#x5927;&#x539F;&#x5219;" class="headerlink" title="Redux&#x7684;&#x4E09;&#x5927;&#x539F;&#x5219;"></a><strong>Redux&#x7684;&#x4E09;&#x5927;&#x539F;&#x5219;</strong></h4><ul>
+<li><h6 id="&#x5355;&#x4E00;&#x6570;&#x636E;&#x6E90;"><a href="#&#x5355;&#x4E00;&#x6570;&#x636E;&#x6E90;" class="headerlink" title="&#x5355;&#x4E00;&#x6570;&#x636E;&#x6E90;"></a><strong>&#x5355;&#x4E00;&#x6570;&#x636E;&#x6E90;</strong></h6><p>1.&#x6574;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;state&#x88AB;&#x5B58;&#x50A8;&#x5728;&#x4E00;&#x9897;object tree&#x4E2D;&#xFF0C;&#x5E76;&#x4E14;&#x8FD9;&#x4E2A;object tree&#x53EA;&#x5B58;&#x50A8;&#x5728;&#x4E00;&#x4E2A; store &#x4E2D;&#xFF1A;</p>
+<p>2.Redux&#x5E76;&#x6CA1;&#x6709;&#x5F3A;&#x5236;&#x8BA9;&#x6211;&#x4EEC;&#x4E0D;&#x80FD;&#x521B;&#x5EFA;&#x591A;&#x4E2A;Store&#xFF0C;&#x4F46;&#x662F;&#x90A3;&#x6837;&#x505A;&#x5E76;&#x4E0D;&#x5229;&#x4E8E;&#x6570;&#x636E;&#x7684;&#x7EF4;&#x62A4;&#xFF1B; </p>
+<p>3.&#x5355;&#x4E00;&#x7684;&#x6570;&#x636E;&#x6E90;&#x53EF;&#x4EE5;&#x8BA9;&#x6574;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;state&#x53D8;&#x5F97;&#x65B9;&#x4FBF;&#x7EF4;&#x62A4;&#x3001;&#x8FFD;&#x8E2A;&#x3001;&#x4FEE;&#x6539;&#xFF1B;</p>
+</li>
+<li><h6 id="State&#x662F;&#x53EA;&#x8BFB;&#x7684;"><a href="#State&#x662F;&#x53EA;&#x8BFB;&#x7684;" class="headerlink" title="State&#x662F;&#x53EA;&#x8BFB;&#x7684;"></a><strong>State&#x662F;&#x53EA;&#x8BFB;&#x7684;</strong></h6><p>1.&#x552F;&#x4E00;&#x4FEE;&#x6539;State&#x7684;&#x65B9;&#x6CD5;&#x4E00;&#x5B9A;&#x662F;&#x89E6;&#x53D1;action&#xFF0C;&#x4E0D;&#x8981;&#x8BD5;&#x56FE;&#x5728;&#x5176;&#x4ED6;&#x5730;&#x65B9;&#x901A;&#x8FC7;&#x4EFB;&#x4F55;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x4FEE;&#x6539;State&#xFF1A; </p>
+<p>2.&#x8FD9;&#x6837;&#x5C31;&#x786E;&#x4FDD;&#x4E86;View&#x6216;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x90FD;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x4FEE;&#x6539;state&#xFF0C;&#x5B83;&#x4EEC;&#x53EA;&#x80FD;&#x901A;&#x8FC7;action&#x6765;&#x63CF;&#x8FF0;&#x81EA;&#x5DF1;&#x60F3;&#x8981;&#x5982;&#x4F55;&#x4FEE;&#x6539;state&#xFF1B; </p>
+<p>3.&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x6240;&#x6709;&#x7684;&#x4FEE;&#x6539;&#x90FD;&#x88AB;&#x96C6;&#x4E2D;&#x5316;&#x5904;&#x7406;&#xFF0C;&#x5E76;&#x4E14;&#x6309;&#x7167;&#x4E25;&#x683C;&#x7684;&#x987A;&#x5E8F;&#x6765;&#x6267;&#x884C;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x9700;&#x8981;&#x62C5;&#x5FC3;race condition&#xFF08;&#x7ADF;&#x6001;&#xFF09;&#x7684;&#x95EE;&#x9898;&#xFF1B; </p>
+</li>
+<li><h6 id="&#x4F7F;&#x7528;&#x7EAF;&#x51FD;&#x6570;&#x6765;&#x6267;&#x884C;&#x4FEE;&#x6539;"><a href="#&#x4F7F;&#x7528;&#x7EAF;&#x51FD;&#x6570;&#x6765;&#x6267;&#x884C;&#x4FEE;&#x6539;" class="headerlink" title="&#x4F7F;&#x7528;&#x7EAF;&#x51FD;&#x6570;&#x6765;&#x6267;&#x884C;&#x4FEE;&#x6539;"></a><strong>&#x4F7F;&#x7528;&#x7EAF;&#x51FD;&#x6570;&#x6765;&#x6267;&#x884C;&#x4FEE;&#x6539;</strong></h6><p>1.&#x901A;&#x8FC7;reducer&#x5C06; &#x65E7;state&#x548C; actions&#x8054;&#x7CFB;&#x5728;&#x4E00;&#x8D77;&#xFF0C;&#x5E76;&#x4E14;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x65B0;&#x7684;State&#xFF1A; </p>
+<p>2.&#x968F;&#x7740;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x590D;&#x6742;&#x5EA6;&#x589E;&#x52A0;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5C06;reducer&#x62C6;&#x5206;&#x6210;&#x591A;&#x4E2A;&#x5C0F;&#x7684;reducers&#xFF0C;&#x5206;&#x522B;&#x64CD;&#x4F5C;&#x4E0D;&#x540C;state tree&#x7684;&#x4E00;&#x90E8;&#x5206;&#xFF1B; </p>
+<p>3.&#x4F46;&#x662F;&#x6240;&#x6709;&#x7684;reducer&#x90FD;&#x5E94;&#x8BE5;&#x662F;&#x7EAF;&#x51FD;&#x6570;&#xFF0C;&#x4E0D;&#x80FD;&#x4EA7;&#x751F;&#x4EFB;&#x4F55;&#x7684;&#x526F;&#x4F5C;&#x7528;&#xFF1B;</p>
+</li>
+</ul>
+<h4 id="Redux&#x6D4B;&#x8BD5;&#x9879;&#x76EE;&#x642D;&#x5EFA;"><a href="#Redux&#x6D4B;&#x8BD5;&#x9879;&#x76EE;&#x642D;&#x5EFA;" class="headerlink" title="Redux&#x6D4B;&#x8BD5;&#x9879;&#x76EE;&#x642D;&#x5EFA;"></a><strong>Redux&#x6D4B;&#x8BD5;&#x9879;&#x76EE;&#x642D;&#x5EFA;</strong></h4><ul>
+<li><h6 id="&#x5B89;&#x88C5;redux&#xFF1A;"><a href="#&#x5B89;&#x88C5;redux&#xFF1A;" class="headerlink" title="&#x5B89;&#x88C5;redux&#xFF1A;"></a>&#x5B89;&#x88C5;redux&#xFF1A;</h6></li>
+</ul>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install redux --save </span><br><span class="line"></span><br><span class="line">#&#x6216; </span><br><span class="line"></span><br><span class="line">yarn add redux</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x200B;     1.&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x9879;&#x76EE;&#x6587;&#x4EF6;&#x5939;&#xFF1A;learn-redux</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># &#x6267;&#x884C;&#x521D;&#x59CB;&#x5316;&#x64CD;&#x4F5C;</span><br><span class="line"></span><br><span class="line">yarn init</span><br><span class="line"></span><br><span class="line"># &#x5B89;&#x88C5;redux</span><br><span class="line"></span><br><span class="line">yarn add redux</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x200B;     2.&#x521B;&#x5EFA;src&#x76EE;&#x5F55;&#xFF0C;&#x5E76;&#x4E14;&#x521B;&#x5EFA;index.js&#x6587;&#x4EF6; </p>
+<p>&#x200B;     3.&#x4FEE;&#x6539;package.json&#x53EF;&#x4EE5;&#x6267;&#x884C;index.js</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: {</span><br><span class="line"></span><br><span class="line">&quot;start&quot;: &quot;node src/index.js&quot; </span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="Redux&#x7684;&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;"><a href="#Redux&#x7684;&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;" class="headerlink" title="Redux&#x7684;&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;"></a><strong>Redux&#x7684;&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;</strong></h4><ul>
+<li><h6 id="&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x4F5C;&#x4E3A;&#x6211;&#x4EEC;&#x8981;&#x4FDD;&#x5B58;&#x7684;&#x72B6;&#x6001;&#xFF1A;"><a href="#&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x4F5C;&#x4E3A;&#x6211;&#x4EEC;&#x8981;&#x4FDD;&#x5B58;&#x7684;&#x72B6;&#x6001;&#xFF1A;" class="headerlink" title="&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x4F5C;&#x4E3A;&#x6211;&#x4EEC;&#x8981;&#x4FDD;&#x5B58;&#x7684;&#x72B6;&#x6001;&#xFF1A;"></a>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x4F5C;&#x4E3A;&#x6211;&#x4EEC;&#x8981;&#x4FDD;&#x5B58;&#x7684;&#x72B6;&#x6001;&#xFF1A;</h6></li>
+<li><h6 id="&#x521B;&#x5EFA;Store&#x6765;&#x5B58;&#x50A8;&#x8FD9;&#x4E2A;state"><a href="#&#x521B;&#x5EFA;Store&#x6765;&#x5B58;&#x50A8;&#x8FD9;&#x4E2A;state" class="headerlink" title="&#x521B;&#x5EFA;Store&#x6765;&#x5B58;&#x50A8;&#x8FD9;&#x4E2A;state"></a>&#x521B;&#x5EFA;Store&#x6765;&#x5B58;&#x50A8;&#x8FD9;&#x4E2A;state</h6><p>1.&#x521B;&#x5EFA;store&#x65F6;&#x5FC5;&#x987B;&#x521B;&#x5EFA;reducer&#xFF1B; </p>
+<p>2.&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; store.getState &#x6765;&#x83B7;&#x53D6;&#x5F53;&#x524D;&#x7684;state</p>
+</li>
+<li><h6 id="&#x901A;&#x8FC7;action&#x6765;&#x4FEE;&#x6539;state"><a href="#&#x901A;&#x8FC7;action&#x6765;&#x4FEE;&#x6539;state" class="headerlink" title="&#x901A;&#x8FC7;action&#x6765;&#x4FEE;&#x6539;state"></a>&#x901A;&#x8FC7;action&#x6765;&#x4FEE;&#x6539;state</h6><p>1.&#x901A;&#x8FC7;dispatch&#x6765;&#x6D3E;&#x53D1;action&#xFF1B; </p>
+<p>2.&#x901A;&#x5E38;action&#x4E2D;&#x90FD;&#x4F1A;&#x6709;type&#x5C5E;&#x6027;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x643A;&#x5E26;&#x5176;&#x4ED6;&#x7684;&#x6570;&#x636E;&#xFF1B; </p>
+</li>
+<li><h6 id="&#x4FEE;&#x6539;reducer&#x4E2D;&#x7684;&#x5904;&#x7406;&#x4EE3;&#x7801;"><a href="#&#x4FEE;&#x6539;reducer&#x4E2D;&#x7684;&#x5904;&#x7406;&#x4EE3;&#x7801;" class="headerlink" title="&#x4FEE;&#x6539;reducer&#x4E2D;&#x7684;&#x5904;&#x7406;&#x4EE3;&#x7801;"></a>&#x4FEE;&#x6539;reducer&#x4E2D;&#x7684;&#x5904;&#x7406;&#x4EE3;&#x7801;</h6><p>1.&#x8BB0;&#x4F4F;&#xFF0C;reducer&#x662F;&#x4E00;&#x4E2A;&#x7EAF;&#x51FD;&#x6570;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x76F4;&#x63A5;&#x4FEE;&#x6539;state&#xFF1B; </p>
+</li>
+<li><h6 id="&#x53EF;&#x4EE5;&#x5728;&#x6D3E;&#x53D1;action&#x4E4B;&#x524D;&#xFF0C;&#x76D1;&#x542C;store&#x7684;&#x53D8;&#x5316;&#xFF1A;"><a href="#&#x53EF;&#x4EE5;&#x5728;&#x6D3E;&#x53D1;action&#x4E4B;&#x524D;&#xFF0C;&#x76D1;&#x542C;store&#x7684;&#x53D8;&#x5316;&#xFF1A;" class="headerlink" title="&#x53EF;&#x4EE5;&#x5728;&#x6D3E;&#x53D1;action&#x4E4B;&#x524D;&#xFF0C;&#x76D1;&#x542C;store&#x7684;&#x53D8;&#x5316;&#xFF1A;"></a>&#x53EF;&#x4EE5;&#x5728;&#x6D3E;&#x53D1;action&#x4E4B;&#x524D;&#xFF0C;&#x76D1;&#x542C;store&#x7684;&#x53D8;&#x5316;&#xFF1A;</h6></li>
+</ul>
+<h4 id="Redux&#x4F7F;&#x7528;&#x6D41;&#x7A0B;"><a href="#Redux&#x4F7F;&#x7528;&#x6D41;&#x7A0B;" class="headerlink" title="Redux&#x4F7F;&#x7528;&#x6D41;&#x7A0B;"></a><strong>Redux&#x4F7F;&#x7528;&#x6D41;&#x7A0B;</strong></h4><ul>
+<li><h6 id="&#x77E5;&#x9053;&#x4E86;redux&#x7684;&#x57FA;&#x672C;&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x5C31;&#x66F4;&#x52A0;&#x6E05;&#x6670;&#x6765;&#x8BA4;&#x8BC6;&#x4E00;&#x4E0B;redux&#x5728;&#x5B9E;&#x9645;&#x5F00;&#x53D1;&#x4E2D;&#x7684;&#x6D41;&#x7A0B;&#xFF1A;"><a href="#&#x77E5;&#x9053;&#x4E86;redux&#x7684;&#x57FA;&#x672C;&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x5C31;&#x66F4;&#x52A0;&#x6E05;&#x6670;&#x6765;&#x8BA4;&#x8BC6;&#x4E00;&#x4E0B;redux&#x5728;&#x5B9E;&#x9645;&#x5F00;&#x53D1;&#x4E2D;&#x7684;&#x6D41;&#x7A0B;&#xFF1A;" class="headerlink" title="&#x77E5;&#x9053;&#x4E86;redux&#x7684;&#x57FA;&#x672C;&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x5C31;&#x66F4;&#x52A0;&#x6E05;&#x6670;&#x6765;&#x8BA4;&#x8BC6;&#x4E00;&#x4E0B;redux&#x5728;&#x5B9E;&#x9645;&#x5F00;&#x53D1;&#x4E2D;&#x7684;&#x6D41;&#x7A0B;&#xFF1A;"></a>&#x77E5;&#x9053;&#x4E86;redux&#x7684;&#x57FA;&#x672C;&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x5C31;&#x66F4;&#x52A0;&#x6E05;&#x6670;&#x6765;&#x8BA4;&#x8BC6;&#x4E00;&#x4E0B;redux&#x5728;&#x5B9E;&#x9645;&#x5F00;&#x53D1;&#x4E2D;&#x7684;&#x6D41;&#x7A0B;&#xFF1A;</h6><img src="https://zoujianhua.oss-cn-chengdu.aliyuncs.com/liuqianjun/image-20201224115937658.png"></li>
+</ul>
+<p>&#x6CE8;&#xFF1A;&#x672C;&#x6587;&#x5185;&#x5BB9;&#x6765;&#x81EA;&#x738B;&#x7EA2;&#x5143;&#x8001;&#x5E08;react&#x8BFE;&#x7A0B;&#x7684;ppt&#x8D44;&#x6599;&#xFF0C;&#x672C;&#x4EBA;&#x4EC5;&#x505A;&#x6574;&#x7406;&#x5F52;&#x7EB3;&#x4F9B;&#x5B66;&#x4E60;&#x4E13;&#x7528;&#x3002;</p>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/redux/">#redux</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2021-1-mac-%E4%BD%BF%E7%94%A8homebrew%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85/">使用homebrew发生的事情</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2020-12-%E5%89%8D%E7%AB%AF/React-react-hooks%E7%9A%84%E4%BD%BF%E7%94%A8/">React Hooks的使用</a>
+            
+        </span>
+    </div>
+    
+</article>
+<!-- 
+
+<div class="sharebox">
+    
+<div class="sharethis-inline-share-buttons"></div>
+<script type='text/javascript'  src="https://beian.aliyun.com/"  async='async' ></script>
+
+</div>
+ -->
+
+<!--  -->
+
+
+    <section id="comments" class="comments">
+      <!-- <style>
+        .comments{margin:30px;padding:10px;background:#fff}
+        @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+      </style> -->
+      
+<div id="valine-thread"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread',
+        appId: 'HGcAdkvh1F76FbC9DbDaAwcy-gzGzoHsz',
+        appKey: 'hBF7dmM8HIfhavSpx0FDbhWi',
+        notify: 'true',
+        verify: 'true',
+        avatar: 'robohash',
+        placeholder: '评论没有好果子吃的！',
+        meta: ['nick', 'mail'],
+        visitor: true,
+        // lang: ''
+    })
+</script>
+
+
+    </section>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2021 Redux的使用的普通底部 &nbsp; <a href="http://beian.miit.gov.cn" target="_blank">蜀ICP备2020034442号</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>

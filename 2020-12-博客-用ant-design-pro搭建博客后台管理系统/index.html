@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>用Ant Design Pro搭建博客后台管理系统 - 我的普通网站</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="">
+
+
+
+
+
+    <meta name="description" content="&amp;#x5F88;&amp;#x7B80;&amp;#x5355;&amp;#xFF0C;&amp;#x6B65;&amp;#x9AA4;&amp;#x5206;&amp;#x4E3A;&amp;#x4E24;&amp;#x6B65;&amp;#xFF1A;step1&amp;#xFF1A;&amp;#x6253;&amp;#x5F00;&amp;#x5B83;&amp;#x7684;&amp;#x5B98;&amp;#x7F51;&amp;#x6587;&amp;#x6863;step2&amp;#xFF1A;&amp;#x2026;&amp;#x7A0D;&amp;#x7B4">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Ant Design Pro搭建博客后台管理系统">
+<meta property="og:url" content="http://lllqqj.cc/2020-12-%E5%8D%9A%E5%AE%A2-%E7%94%A8ant-design-pro%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="我的普通网站">
+<meta property="og:description" content="&amp;#x5F88;&amp;#x7B80;&amp;#x5355;&amp;#xFF0C;&amp;#x6B65;&amp;#x9AA4;&amp;#x5206;&amp;#x4E3A;&amp;#x4E24;&amp;#x6B65;&amp;#xFF1A;step1&amp;#xFF1A;&amp;#x6253;&amp;#x5F00;&amp;#x5B83;&amp;#x7684;&amp;#x5B98;&amp;#x7F51;&amp;#x6587;&amp;#x6863;step2&amp;#xFF1A;&amp;#x2026;&amp;#x7A0D;&amp;#x7B4">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zoujianhua.oss-cn-chengdu.aliyuncs.com/liuqianjun/%E6%9F%A5%E6%89%BEumi.cmd%E7%9A%84%E4%BD%8D%E7%BD%AE.jpg">
+<meta property="article:published_time" content="2020-12-24T06:26:35.000Z">
+<meta property="article:modified_time" content="2020-12-24T09:25:47.000Z">
+<meta property="article:author" content="liuqianjun">
+<meta property="article:tag" content="antd">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zoujianhua.oss-cn-chengdu.aliyuncs.com/liuqianjun/%E6%9F%A5%E6%89%BEumi.cmd%E7%9A%84%E4%BD%8D%E7%BD%AE.jpg">
+<meta name="twitter:creator" content="@纯蓝碳素">
+<meta name="twitter:site" content="https://weibo.com/2006899037">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 5.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="我的普通网站" type="application/atom+xml">
+</head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                <img src="/images/logo.jpg" alt="" height="28">
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">普通归档</a>
+            
+            <a class="navbar-item "
+               href="/categories">小心分类</a>
+            
+            <a class="navbar-item "
+               href="/tags">想要摘除的标签</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="搜索" href="javascript:;">
+                <i class="fa fa-search"></i>
+            </a>
+            
+            
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            用Ant Design Pro搭建博客后台管理系统
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            
+                <time datetime="2020-12-24T06:26:35.000Z" itemprop="datePublished">12月 24 2020</time>
+            
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="fa fa-folder"></i>
+            <a class="article-category-link" href="/categories/%E5%8D%9A%E5%AE%A2/">博客</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            4 分钟 读完 (约 623 字)
+        </span>
+        
+        <span id="/2020-12-%E5%8D%9A%E5%AE%A2-%E7%94%A8ant-design-pro%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" class="column is-narrow leancloud_visitors" data-flag-title="用Ant Design Pro搭建博客后台管理系统">
+            <em class="post-meta-item-text">浏览数:</em>
+            <i class="leancloud-visitors-count">loading</i>
+          </span>
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <h4 id="&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x6B65;&#x9AA4;&#x5206;&#x4E3A;&#x4E24;&#x6B65;&#xFF1A;"><a href="#&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x6B65;&#x9AA4;&#x5206;&#x4E3A;&#x4E24;&#x6B65;&#xFF1A;" class="headerlink" title="&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x6B65;&#x9AA4;&#x5206;&#x4E3A;&#x4E24;&#x6B65;&#xFF1A;"></a><strong>&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x6B65;&#x9AA4;&#x5206;&#x4E3A;&#x4E24;&#x6B65;&#xFF1A;</strong></h4><p>step1&#xFF1A;&#x6253;&#x5F00;&#x5B83;&#x7684;<a target="_blank" rel="noopener" href="https://pro.ant.design/docs/getting-started-cn">&#x5B98;&#x7F51;&#x6587;&#x6863;</a><br>step2&#xFF1A;&#x2026;&#x7A0D;&#x7B49;&#xFF0C;&#x6709;&#x4E2A;error</p>
+<a id="more"></a>
+<p>&#xFF08;&#x66B4;&#x98CE;&#x6655;&#x7729;&#xFF01;&#xFF01;&#xFF01;&#x6211;&#x7684;&#x9519;&#x8BEF;&#x4EE3;&#x7801;&#x6CA1;&#x4FDD;&#x5B58;&#x4E0A;&#x1F625; &#x4E0D;&#x8FC7;&#x6CA1;&#x5173;&#x7CFB;&#x5566;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x9519;&#x8BEF;&#x4E0D;&#x4E00;&#x6837;~&#xFF09;</p>
+<p>&#x5728;<a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/npm/package/create-umi/">&#x6DD8;&#x5B9D;&#x955C;&#x50CF;create-umi</a>&#x6709;&#x4E00;&#x4E2A;FAQ&#xFF0C;&#x4ED6;&#x8BF4;&#x8BD5;&#x4E00;&#x4E0B;&#x624B;&#x52A8;&#x5B89;&#x88C5; create-umi&#xFF0C;&#x597D;&#x7684;&#x3002;</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install create-umi -g</span><br><span class="line">$ create-umi</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x7136;&#x540E;&#x9009;&#x62E9;&#xFF0C;&#x9009;&#x62E9;&#xFF0C;&#x56DE;&#x8F66;&#xFF0C;&#x52A0;&#x8F7D;&#xFF0C;ok&#x3002;</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">PS E:\MyProjects\personal-site-admin&gt; create-umi</span><br><span class="line">? Select the boilerplate type ant-design-pro</span><br><span class="line">? &#xFFFD;&#x1F9D9; Be the first to experience the new umi@3 ? Pro </span><br><span class="line">? &#xFFFD;&#x1F913; Which language do you want to use? TypeScript</span><br><span class="line">? &#xFFFD;&#x1F680; Do you need all the blocks or a simple scaffold? comple</span><br><span class="line">&gt; &#xFFFD;&#x1F648; complete mode can only use the version of antd</span><br><span class="line">Cloning into &apos;E:\MyProjects\personal-site-admin&apos;...</span><br><span class="line">remote: Enumerating objects: 573, done.</span><br><span class="line">remote: Counting objects: 100% (573/573), done.</span><br><span class="line">remote: Compressing objects: 100% (484/484), done.</span><br><span class="line">Receiving objects:  95% (545/573), 444.00 KiB | 278.00 KiB/seused 0</span><br><span class="line">Receiving objects: 100% (573/573), 463.55 KiB | 285.00 KiB/s, done.</span><br><span class="line">Resolving deltas: 100% (94/94), done.</span><br><span class="line">&gt; &#xFFFD;&#x1F69A; clone succe</span><br><span class="line">&gt; Clean up...</span><br><span class="line">&#x2728; File Generate Done</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x4F46;&#x542F;&#x52A8;&#x7684;&#x8DEF;&#x4E0A;&#x603B;&#x662F;&#x95EE;&#x9898;&#x91CD;&#x91CD;&#xFF01;</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&apos;umi&apos; &#x4E0D;&#x662F;&#x5185;&#x90E8;&#x6216;&#x5916;&#x90E8;&#x547D;&#x4EE4;&#xFF0C;&#x4E5F;&#x4E0D;&#x662F;&#x53EF;&#x8FD0;&#x884C;&#x7684;&#x7A0B;&#x5E8F;</span><br><span class="line">&#x6216;&#x6279;&#x5904;&#x7406;&#x6587;&#x4EF6;&#x3002;</span><br><span class="line">npm ERR! code ELIFECYCLE</span><br><span class="line">npm ERR! errno 1</span><br><span class="line">npm ERR! ant-design-pro@4.3.0 start: `umi dev`</span><br><span class="line">npm ERR! Exit status 1</span><br><span class="line">npm ERR!</span><br><span class="line">npm ERR! Failed at the ant-design-pro@4.3.0 start script.</span><br><span class="line">npm ERR! This is probably not a problem with npm. There is likely additional logging output above.</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x4ED6;&#x8BF4;&#xFF0C;&#x201D;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x548C;&#x6211;&#xFF0C;npm&#xFF0C;&#x6BDB;&#x5173;&#x7CFB;&#x6CA1;&#x6709;&#xFF0C;&#x770B;&#x65E5;&#x5FD7;&#x5427;&#x4F60;&#x3002;&#x201D;</p>
+<p>&#x597D;&#x7684;~</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ yarn global add umi</span><br><span class="line">$ umi -v</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x4F60;&#x731C;&#x600E;&#x4E48;&#x7740;&#xFF0C;&#x8FD8;&#x662F;&#x62A5;&#x9519;&#x54E6;&#xFF01;</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">umi : &#x65E0;&#x6CD5;&#x5C06;&#x201C;umi&#x201D;&#x9879;&#x8BC6;&#x522B;&#x4E3A; cmdlet&#x3001;&#x51FD;&#x6570;&#x3001;&#x811A;&#x672C;&#x6587;&#x4EF6;&#x6216;&#x53EF;&#x8FD0;&#x884C;&#x7A0B;&#x5E8F;&#x7684;&#x540D;&#x79F0;&#x3002;&#x8BF7;&#x68C0;&#x67E5;&#x540D;&#x79F0;&#x7684;&#x62FC;&#x5199;&#xFF0C;&#x5982;&#x679C;&#x5305;&#x62EC;&#x8DEF;&#x5F84;&#xFF0C;&#x8BF7;&#x786E;&#x4FDD;&#x8DEF;&#x5F84;&#x6B63;&#x786E;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x8BD5;&#x4E00;&#x6B21;&#x3002;</span><br><span class="line">&#x6240;&#x5728;&#x4F4D;&#x7F6E; &#x884C;:1 &#x5B57;&#x7B26;: 1</span><br><span class="line">+ umi -v</span><br><span class="line">+ ~~~</span><br><span class="line">    + CategoryInfo          : ObjectNotFound: (umi:String) [], CommandNotFoundException</span><br><span class="line">    + FullyQualifiedErrorId : CommandNotFoundException</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x4E0D;&#x6025;&#xFF0C;&#x914D;&#x7F6E;&#x4E00;&#x4E0B;&#x5168;&#x5C40;&#xFF01;</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn global bin</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x8F93;&#x5165;&#x4EE5;&#x4E0A;&#x547D;&#x4EE4;&#x540E;&#xFF0C;&#x5F97;&#x5230;yarn&#x7684;&#x5730;&#x5740;&#xFF0C;&#x7136;&#x540E;&#x914D;&#x7F6E;&#x3002;</p>
+<p>&#x518D;&#x6B21;&#x770B;&#x770B;umi&#x80FD;&#x7528;&#x4E0D;&#x3002;&#x563F;&#x563F;&#xFF0C;&#x4E0D;&#x53EF;&#x4EE5;&#x3002;</p>
+<p>&#x6211;&#x624B;&#x52A8;&#x627E;&#x627E;&#x8FD9;&#x4E2A;&#x547D;&#x4EE4;&#x5728;&#x54EA;&#x513F;&#xFF0C;&#x8FD9;&#x4E0D;&#x662F;&#x5417;&#xFF1F;&#x4E00;&#x6BDB;&#x4E00;&#x6837;&#xFF01;</p>
+<p><img src="https://zoujianhua.oss-cn-chengdu.aliyuncs.com/liuqianjun/%E6%9F%A5%E6%89%BEumi.cmd%E7%9A%84%E4%BD%8D%E7%BD%AE.jpg" alt="&#x67E5;&#x627E;umi.cmd&#x7684;&#x4F4D;&#x7F6E;"></p>
+<p>&#x7B97;&#x4E86;&#xFF0C;&#x8FD8;&#x662F;&#x627E;npm&#x5E2E;&#x5E2E;&#x5FD9;&#x5427;&#x3002;</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install umi -g</span><br></pre></td></tr></tbody></table></figure>
+<p>emm&#xB7;&#xB7;&#xB7;&#xB7;&#xB7;&#xB7;umi&#x53C8;&#x53EF;&#x4EE5;&#x4E86;&#x3002;&#x8FD8;&#x662F;&#x6709;&#x5F88;&#x591A;&#x5305;&#x63D0;&#x793A;&#x6CA1;&#x5B89;&#x88C5;&#x4E0A;&#x3002;&#x5220;&#x9664;node_modules,&#x518D;&#x6765;&#x4E00;&#x6B21;&#xFF01;</p>
+<p>no no no,&#x5931;&#x8D25;&#x3002;&#x7528;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x518D;&#x8BD5;</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x53EF;&#x4EE5;&#x4E86;&#x3002;</p>
+<figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn start</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x542F;&#x52A8;&#x4E86;&#x3002;</p>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/antd/">#antd</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2020-12-%E5%89%8D%E7%AB%AF/TypeScript-%E5%9C%A8typescript%E4%B8%8B%E4%BD%BF%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AD%97%E9%9D%A2%E9%87%8F%E7%B1%BB%E5%9E%8B%E5%92%8C%E6%9E%9A%E4%B8%BE/">在TypeScript下使用字符串字面量类型和枚举</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2020-1-%E5%89%8D%E7%AB%AF/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95-%E6%95%B4%E5%90%88ant-design-pro%E5%92%8C%E8%8B%A5%E4%BE%9D%E5%90%8E%E7%AB%AF%E9%81%87%E5%88%B0%E7%9A%84%E5%9B%B0%E9%9A%BE%E5%92%8C%E8%A7%A3%E5%86%B3%E8%B7%AF%E7%A8%8B/">整合Ant Design Pro和若依后端遇到的困难和解决路程</a>
+            
+        </span>
+    </div>
+    
+</article>
+<!-- 
+
+<div class="sharebox">
+    
+<div class="sharethis-inline-share-buttons"></div>
+<script type='text/javascript'  src="https://beian.aliyun.com/"  async='async' ></script>
+
+</div>
+ -->
+
+<!--  -->
+
+
+    <section id="comments" class="comments">
+      <!-- <style>
+        .comments{margin:30px;padding:10px;background:#fff}
+        @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+      </style> -->
+      
+<div id="valine-thread"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread',
+        appId: 'HGcAdkvh1F76FbC9DbDaAwcy-gzGzoHsz',
+        appKey: 'hBF7dmM8HIfhavSpx0FDbhWi',
+        notify: 'true',
+        verify: 'true',
+        avatar: 'robohash',
+        placeholder: '评论没有好果子吃的！',
+        meta: ['nick', 'mail'],
+        visitor: true,
+        // lang: ''
+    })
+</script>
+
+
+    </section>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2021 用Ant Design Pro搭建博客后台管理系统的普通底部 &nbsp; <a href="http://beian.miit.gov.cn" target="_blank">蜀ICP备2020034442号</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>
