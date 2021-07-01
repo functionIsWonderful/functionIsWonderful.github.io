@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>深入Vue3+TypeScript技术栈:Vue3基础语法（学习笔记二） - 我的普通网站</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="">
+
+
+
+
+
+    <meta name="description" content="&amp;#x6B63;&amp;#x6240;&amp;#x8C13;&amp;#x7BA1;&amp;#x4E2D;&amp;#x7AA5;&amp;#x8C79;&amp;#xFF0C;&amp;#x53EF;&amp;#x89C1;&amp;#x4E00;&amp;#x6591;&amp;#xFF0C;&amp;#x7EE7;&amp;#x7EED;&amp;#x4ECE;&amp;#x8001;&amp;#x5E08;&amp;#x7684;&amp;#x601D;&amp;#x7EF4;&amp;#x5BFC;&amp;#x56FE;&amp;#x5165;&amp;#x624B;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入Vue3+TypeScript技术栈:Vue3基础语法（学习笔记二）">
+<meta property="og:url" content="http://lllqqj.cc/2021-7-%E5%89%8D%E7%AB%AF/Vue-%E6%B7%B1%E5%85%A5vue3-typescript%E6%8A%80%E6%9C%AF%E6%A0%88-vue3%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%EF%BC%88%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%89/index.html">
+<meta property="og:site_name" content="我的普通网站">
+<meta property="og:description" content="&amp;#x6B63;&amp;#x6240;&amp;#x8C13;&amp;#x7BA1;&amp;#x4E2D;&amp;#x7AA5;&amp;#x8C79;&amp;#xFF0C;&amp;#x53EF;&amp;#x89C1;&amp;#x4E00;&amp;#x6591;&amp;#xFF0C;&amp;#x7EE7;&amp;#x7EED;&amp;#x4ECE;&amp;#x8001;&amp;#x5E08;&amp;#x7684;&amp;#x601D;&amp;#x7EF4;&amp;#x5BFC;&amp;#x56FE;&amp;#x5165;&amp;#x624B;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zoujianhua.oss-cn-chengdu.aliyuncs.com/liuqianjun/Vue3%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95.png">
+<meta property="og:image" content="https://zoujianhua.oss-cn-chengdu.aliyuncs.com/liuqianjun/image-20210629175353582.png">
+<meta property="og:image" content="https://zoujianhua.oss-cn-chengdu.aliyuncs.com/liuqianjun/image-20210701101548630.png">
+<meta property="og:image" content="https://zoujianhua.oss-cn-chengdu.aliyuncs.com/liuqianjun/image-20210701103910191.png">
+<meta property="article:published_time" content="2021-07-01T03:43:11.000Z">
+<meta property="article:modified_time" content="2021-07-01T03:43:47.464Z">
+<meta property="article:author" content="liuqianjun">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zoujianhua.oss-cn-chengdu.aliyuncs.com/liuqianjun/Vue3%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95.png">
+<meta name="twitter:creator" content="@纯蓝碳素">
+<meta name="twitter:site" content="https://weibo.com/2006899037">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="我的普通网站" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                <img src="/images/logo.jpg" alt="" height="28">
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">普通归档</a>
+            
+            <a class="navbar-item "
+               href="/categories">小心分类</a>
+            
+            <a class="navbar-item "
+               href="/tags">想要摘除的标签</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="搜索" href="javascript:;">
+                <i class="fa fa-search"></i>
+            </a>
+            
+            
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            深入Vue3+TypeScript技术栈:Vue3基础语法（学习笔记二）
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            
+                <time datetime="2021-07-01T03:43:11.000Z" itemprop="datePublished">7月 1 2021</time>
+            
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="fa fa-folder"></i>
+            <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span>></span><a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/Vue/">Vue</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            13 分钟 读完 (约 1985 字)
+        </span>
+        
+        <span id="/2021-7-%E5%89%8D%E7%AB%AF/Vue-%E6%B7%B1%E5%85%A5vue3-typescript%E6%8A%80%E6%9C%AF%E6%A0%88-vue3%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%EF%BC%88%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%89/" class="column is-narrow leancloud_visitors" data-flag-title="深入Vue3+TypeScript技术栈:Vue3基础语法（学习笔记二）">
+            <em class="post-meta-item-text">浏览数:</em>
+            <i class="leancloud-visitors-count">loading</i>
+          </span>
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <h3 id="&#x6B63;&#x6240;&#x8C13;&#x7BA1;&#x4E2D;&#x7AA5;&#x8C79;&#xFF0C;&#x53EF;&#x89C1;&#x4E00;&#x6591;&#xFF0C;&#x7EE7;&#x7EED;&#x4ECE;&#x8001;&#x5E08;&#x7684;&#x601D;&#x7EF4;&#x5BFC;&#x56FE;&#x5165;&#x624B;&#xFF1A;"><a href="#&#x6B63;&#x6240;&#x8C13;&#x7BA1;&#x4E2D;&#x7AA5;&#x8C79;&#xFF0C;&#x53EF;&#x89C1;&#x4E00;&#x6591;&#xFF0C;&#x7EE7;&#x7EED;&#x4ECE;&#x8001;&#x5E08;&#x7684;&#x601D;&#x7EF4;&#x5BFC;&#x56FE;&#x5165;&#x624B;&#xFF1A;" class="headerlink" title="&#x6B63;&#x6240;&#x8C13;&#x7BA1;&#x4E2D;&#x7AA5;&#x8C79;&#xFF0C;&#x53EF;&#x89C1;&#x4E00;&#x6591;&#xFF0C;&#x7EE7;&#x7EED;&#x4ECE;&#x8001;&#x5E08;&#x7684;&#x601D;&#x7EF4;&#x5BFC;&#x56FE;&#x5165;&#x624B;&#xFF1A;"></a>&#x6B63;&#x6240;&#x8C13;<code>&#x7BA1;&#x4E2D;&#x7AA5;&#x8C79;&#xFF0C;&#x53EF;&#x89C1;&#x4E00;&#x6591;</code>&#xFF0C;&#x7EE7;&#x7EED;&#x4ECE;&#x8001;&#x5E08;&#x7684;&#x601D;&#x7EF4;&#x5BFC;&#x56FE;&#x5165;&#x624B;&#xFF1A;</h3><p><img src="https://zoujianhua.oss-cn-chengdu.aliyuncs.com/liuqianjun/Vue3%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95.png" alt="&#x4E8C;. Vue3&#x57FA;&#x7840;&#x8BED;&#x6CD5;"></p>
+<h3 id="&#x8001;&#x5E08;&#x89E3;&#x7B54;&#x4E0A;&#x6B21;&#x8BFE;&#x540E;&#x4F5C;&#x4E1A;&#x7684;&#x5185;&#x5BB9;&#xFF1A;"><a href="#&#x8001;&#x5E08;&#x89E3;&#x7B54;&#x4E0A;&#x6B21;&#x8BFE;&#x540E;&#x4F5C;&#x4E1A;&#x7684;&#x5185;&#x5BB9;&#xFF1A;" class="headerlink" title="&#x8001;&#x5E08;&#x89E3;&#x7B54;&#x4E0A;&#x6B21;&#x8BFE;&#x540E;&#x4F5C;&#x4E1A;&#x7684;&#x5185;&#x5BB9;&#xFF1A;"></a>&#x8001;&#x5E08;&#x89E3;&#x7B54;&#x4E0A;&#x6B21;&#x8BFE;&#x540E;&#x4F5C;&#x4E1A;&#x7684;&#x5185;&#x5BB9;&#xFF1A;</h3><p><img src="https://zoujianhua.oss-cn-chengdu.aliyuncs.com/liuqianjun/image-20210629175353582.png" alt="methods&#x65B9;&#x6CD5;&#x7ED1;&#x5B9A;this"></p>
+<a id="more"></a>
+
+<h3 id="&#x6839;&#x636E;&#x8001;&#x5E08;&#x8BFE;&#x4EF6;&#x603B;&#x7ED3;&#x51FA;&#x7684;&#x601D;&#x7EF4;&#x5BFC;&#x56FE;&#xFF1A;"><a href="#&#x6839;&#x636E;&#x8001;&#x5E08;&#x8BFE;&#x4EF6;&#x603B;&#x7ED3;&#x51FA;&#x7684;&#x601D;&#x7EF4;&#x5BFC;&#x56FE;&#xFF1A;" class="headerlink" title="&#x6839;&#x636E;&#x8001;&#x5E08;&#x8BFE;&#x4EF6;&#x603B;&#x7ED3;&#x51FA;&#x7684;&#x601D;&#x7EF4;&#x5BFC;&#x56FE;&#xFF1A;"></a>&#x6839;&#x636E;&#x8001;&#x5E08;&#x8BFE;&#x4EF6;&#x603B;&#x7ED3;&#x51FA;&#x7684;&#x601D;&#x7EF4;&#x5BFC;&#x56FE;&#xFF1A;</h3><p><a target="_blank" rel="noopener" href="https://zoujianhua.oss-cn-chengdu.aliyuncs.com/liuqianjun/02_Vue3%E5%9F%BA%E7%A1%80-%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95_withMarginNotes.pdf">02_Vue3&#x57FA;&#x7840;-&#x6A21;&#x677F;&#x8BED;&#x6CD5;</a></p>
+<p>&#x5B66;&#x4E60;&#x8001;&#x5E08;&#x7684;&#x516C;&#x4F17;&#x53F7;&#x6587;&#x7AE0;&#xFF0C;&#x5173;&#x4E8E;this&#x81EA;&#x5DF1;&#x7684;&#x4E00;&#x4E9B;&#x603B;&#x7ED3;&#xFF1A;</p>
+<h4 id="this&#x662F;&#x4EC0;&#x4E48;&#xFF1F;"><a href="#this&#x662F;&#x4EC0;&#x4E48;&#xFF1F;" class="headerlink" title="this&#x662F;&#x4EC0;&#x4E48;&#xFF1F;"></a>this&#x662F;&#x4EC0;&#x4E48;&#xFF1F;</h4><blockquote>
+<p>&#x5728;&#x7EDD;&#x5927;&#x591A;&#x6570;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x51FD;&#x6570;&#x7684;&#x8C03;&#x7528;&#x65B9;&#x5F0F;&#x51B3;&#x5B9A;&#x4E86; <code>this</code> &#x7684;&#x503C;&#xFF08;&#x8FD0;&#x884C;&#x65F6;&#x7ED1;&#x5B9A;&#xFF09;&#x3002;<code>this</code> &#x4E0D;&#x80FD;&#x5728;&#x6267;&#x884C;&#x671F;&#x95F4;&#x88AB;&#x8D4B;&#x503C;&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x6BCF;&#x6B21;&#x51FD;&#x6570;&#x88AB;&#x8C03;&#x7528;&#x65F6; <code>this</code> &#x7684;&#x503C;&#x4E5F;&#x53EF;&#x80FD;&#x4F1A;&#x4E0D;&#x540C;&#x3002;ES5 &#x5F15;&#x5165;&#x4E86; <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">bind</a> &#x65B9;&#x6CD5;&#x6765;&#x8BBE;&#x7F6E;&#x51FD;&#x6570;&#x7684; <code>this</code> &#x503C;&#xFF0C;&#x800C;&#x4E0D;&#x7528;&#x8003;&#x8651;&#x51FD;&#x6570;&#x5982;&#x4F55;&#x88AB;&#x8C03;&#x7528;&#x7684;&#x3002;ES2015 &#x5F15;&#x5165;&#x4E86;<a target="_blank" rel="noopener" href="https://wiki.developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions">&#x7BAD;&#x5934;&#x51FD;&#x6570;</a>&#xFF0C;&#x7BAD;&#x5934;&#x51FD;&#x6570;&#x4E0D;&#x63D0;&#x4F9B;&#x81EA;&#x8EAB;&#x7684; this &#x7ED1;&#x5B9A;&#xFF08;<code>this</code> &#x7684;&#x503C;&#x5C06;&#x4FDD;&#x6301;&#x4E3A;&#x95ED;&#x5408;&#x8BCD;&#x6CD5;&#x4E0A;&#x4E0B;&#x6587;&#x7684;&#x503C;&#xFF09;&#x3002;</p>
+</blockquote>
+<p>&#x7528;&#x81EA;&#x5DF1;&#x7684;&#x8BDD;&#x6765;&#x8BF4;&#xFF0C;<strong>this&#x4EE3;&#x8868;&#x5F53;&#x524D;&#x7684;&#x8C03;&#x7528;&#x5BF9;&#x8C61;</strong>&#x3002;</p>
+<h4 id="this&#x7684;&#x6307;&#x5411;&#xFF1F;"><a href="#this&#x7684;&#x6307;&#x5411;&#xFF1F;" class="headerlink" title="this&#x7684;&#x6307;&#x5411;&#xFF1F;"></a>this&#x7684;&#x6307;&#x5411;&#xFF1F;</h4><ul>
+<li>&#x5168;&#x5C40;&#x4E0A;&#x4E0B;&#x6587;</li>
+</ul>
+<blockquote>
+<p>&#x65E0;&#x8BBA;&#x662F;&#x5426;&#x5728;&#x4E25;&#x683C;&#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;&#x5728;&#x5168;&#x5C40;&#x6267;&#x884C;&#x73AF;&#x5883;&#x4E2D;&#xFF08;&#x5728;&#x4EFB;&#x4F55;&#x51FD;&#x6570;&#x4F53;&#x5916;&#x90E8;&#xFF09;<code>this</code> &#x90FD;&#x6307;&#x5411;&#x5168;&#x5C40;&#x5BF9;&#x8C61;&#x3002;</p>
+</blockquote>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span> == <span class="hljs-built_in">window</span>);</span><br><span class="line"><span class="hljs-keyword">var</span> name = <span class="hljs-string">&quot;a&quot;</span>;</span><br><span class="line"><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);</span><br><span class="line"><span class="hljs-built_in">this</span>.b = <span class="hljs-string">&quot;bb&quot;</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">window</span>.b);</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="https://zoujianhua.oss-cn-chengdu.aliyuncs.com/liuqianjun/image-20210701101548630.png" alt="&#x5728;&#x5168;&#x5C40;&#x4F5C;&#x7528;&#x57DF;&#x91CC;"></p>
+<ul>
+<li>&#x51FD;&#x6570;&#x4E0A;&#x4E0B;&#x6587;</li>
+</ul>
+<blockquote>
+<p>&#x5728;&#x51FD;&#x6570;&#x5185;&#x90E8;&#xFF0C;<code>this</code>&#x7684;&#x503C;&#x53D6;&#x51B3;&#x4E8E;&#x51FD;&#x6570;&#x88AB;&#x8C03;&#x7528;&#x7684;&#x65B9;&#x5F0F;&#x3002;</p>
+</blockquote>
+<p>&#x6240;&#x6709;&#x7684;&#x51FD;&#x6570;&#x5728;&#x88AB;&#x8C03;&#x7528;&#x65F6;&#xFF0C;&#x90FD;&#x4F1A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x6267;&#x884C;&#x4E0A;&#x4E0B;&#x6587;&#xFF1A;</p>
+<ul>
+<li>&#x8FD9;&#x4E2A;&#x4E0A;&#x4E0B;&#x6587;&#x4E2D;&#x8BB0;&#x5F55;&#x7740;&#x51FD;&#x6570;&#x7684;&#x8C03;&#x7528;&#x6808;&#x3001;&#x51FD;&#x6570;&#x7684;&#x8C03;&#x7528;&#x65B9;&#x5F0F;&#x3001;&#x4F20;&#x5165;&#x7684;&#x53C2;&#x6570;&#x4FE1;&#x606F;&#x7B49;&#xFF1B;</li>
+<li>this&#x4E5F;&#x662F;&#x5176;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#xFF1B;</li>
+</ul>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// &#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x51FD;&#x6570;</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 1.&#x8C03;&#x7528;&#x65B9;&#x5F0F;&#x4E00;: &#x76F4;&#x63A5;&#x8C03;&#x7528;</span></span><br><span class="line">foo(); <span class="hljs-comment">// window</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 2.&#x8C03;&#x7528;&#x65B9;&#x5F0F;&#x4E8C;: &#x5C06;foo&#x653E;&#x5230;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x4E2D;,&#x518D;&#x8C03;&#x7528;</span></span><br><span class="line"><span class="hljs-keyword">var</span> obj = {</span><br><span class="line">  name: <span class="hljs-string">&quot;why&quot;</span>,</span><br><span class="line">  foo: foo</span><br><span class="line">}</span><br><span class="line">obj.foo() <span class="hljs-comment">// obj&#x5BF9;&#x8C61;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// 3.&#x8C03;&#x7528;&#x65B9;&#x5F0F;&#x4E09;: &#x901A;&#x8FC7;call/apply&#x8C03;&#x7528;</span></span><br><span class="line">foo.call(<span class="hljs-string">&quot;abc&quot;</span>); <span class="hljs-comment">// String {&quot;abc&quot;}&#x5BF9;&#x8C61;</span></span><br></pre></td></tr></tbody></table></figure>
+<p><img src="https://zoujianhua.oss-cn-chengdu.aliyuncs.com/liuqianjun/image-20210701103910191.png" alt="&#x5728;&#x51FD;&#x6570;&#x4E0A;&#x4E0B;&#x6587;&#x91CC;"></p>
+<h4 id="this&#x7684;&#x7ED1;&#x5B9A;&#x89C4;&#x5219;"><a href="#this&#x7684;&#x7ED1;&#x5B9A;&#x89C4;&#x5219;" class="headerlink" title="this&#x7684;&#x7ED1;&#x5B9A;&#x89C4;&#x5219;"></a>this&#x7684;&#x7ED1;&#x5B9A;&#x89C4;&#x5219;</h4><h6 id="1&#x3001;&#x9ED8;&#x8BA4;&#x7ED1;&#x5B9A;"><a href="#1&#x3001;&#x9ED8;&#x8BA4;&#x7ED1;&#x5B9A;" class="headerlink" title="1&#x3001;&#x9ED8;&#x8BA4;&#x7ED1;&#x5B9A;"></a><em>1&#x3001;&#x9ED8;&#x8BA4;&#x7ED1;&#x5B9A;</em></h6><p>&#x4F5C;&#x4E3A;&#x72EC;&#x7ACB;&#x51FD;&#x6570;&#x8C03;&#x7528;&#xFF0C;&#x5373;&#x662F;&#x51FD;&#x6570;&#x672A;&#x7ED1;&#x5B9A;&#x5230;&#x5BF9;&#x8C61;&#x4E0A;&#x8FDB;&#x884C;&#x8C03;&#x7528;&#x3002;</p>
+<h5 id="&#x6848;&#x4F8B;&#x4E00;&#xFF1A;&#x666E;&#x901A;&#x51FD;&#x6570;&#x8C03;&#x7528;"><a href="#&#x6848;&#x4F8B;&#x4E00;&#xFF1A;&#x666E;&#x901A;&#x51FD;&#x6570;&#x8C03;&#x7528;" class="headerlink" title="&#x6848;&#x4F8B;&#x4E00;&#xFF1A;&#x666E;&#x901A;&#x51FD;&#x6570;&#x8C03;&#x7528;"></a>&#x6848;&#x4F8B;&#x4E00;&#xFF1A;&#x666E;&#x901A;&#x51FD;&#x6570;&#x8C03;&#x7528;</h5><ul>
+<li>&#x51FD;&#x6570;&#x76F4;&#x63A5;&#x88AB;&#x8C03;&#x7528;</li>
+<li>&#x9ED8;&#x8BA4;&#x7ED1;&#x5B9A;&#x5168;&#x5C40;&#x5BF9;&#x8C61;&#xFF08;window&#xFF09;</li>
+</ul>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>); <span class="hljs-comment">// window</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">foo();</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="&#x6848;&#x4F8B;&#x4E8C;&#xFF1A;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x94FE;"><a href="#&#x6848;&#x4F8B;&#x4E8C;&#xFF1A;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x94FE;" class="headerlink" title="&#x6848;&#x4F8B;&#x4E8C;&#xFF1A;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x94FE;"></a>&#x6848;&#x4F8B;&#x4E8C;&#xFF1A;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x94FE;</h5><ul>
+<li>&#x6240;&#x6709;&#x51FD;&#x6570;&#x7684;&#x8C03;&#x7528;&#x6CA1;&#x88AB;&#x7ED1;&#x5B9A;&#x5230;&#x5BF9;&#x8C61;&#x4E0A;&#x3002;</li>
+</ul>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test1</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>); <span class="hljs-comment">// window</span></span><br><span class="line">  test2();</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test2</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>); <span class="hljs-comment">// window</span></span><br><span class="line">  test3()</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test3</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>); <span class="hljs-comment">// window</span></span><br><span class="line">}</span><br><span class="line">test1();</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="&#x6848;&#x4F8B;&#x4E09;&#xFF1A;&#x5C06;&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#xFF0C;&#x4F20;&#x5165;&#x5230;&#x53E6;&#x4E00;&#x4E2A;&#x51FD;&#x6570;"><a href="#&#x6848;&#x4F8B;&#x4E09;&#xFF1A;&#x5C06;&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#xFF0C;&#x4F20;&#x5165;&#x5230;&#x53E6;&#x4E00;&#x4E2A;&#x51FD;&#x6570;" class="headerlink" title="&#x6848;&#x4F8B;&#x4E09;&#xFF1A;&#x5C06;&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#xFF0C;&#x4F20;&#x5165;&#x5230;&#x53E6;&#x4E00;&#x4E2A;&#x51FD;&#x6570;"></a>&#x6848;&#x4F8B;&#x4E09;&#xFF1A;&#x5C06;&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#xFF0C;&#x4F20;&#x5165;&#x5230;&#x53E6;&#x4E00;&#x4E2A;&#x51FD;&#x6570;</h5><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">func</span>) </span>{</span><br><span class="line">  func()</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>); <span class="hljs-comment">// window</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">foo(bar);</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="&#x6848;&#x4F8B;&#x56DB;&#xFF1A;&#x53EA;&#x5F15;&#x7528;&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x672A;&#x8C03;&#x7528;"><a href="#&#x6848;&#x4F8B;&#x56DB;&#xFF1A;&#x53EA;&#x5F15;&#x7528;&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x672A;&#x8C03;&#x7528;" class="headerlink" title="&#x6848;&#x4F8B;&#x56DB;&#xFF1A;&#x53EA;&#x5F15;&#x7528;&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x672A;&#x8C03;&#x7528;"></a>&#x6848;&#x4F8B;&#x56DB;&#xFF1A;&#x53EA;&#x5F15;&#x7528;&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x672A;&#x8C03;&#x7528;</h5><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">func</span>) </span>{</span><br><span class="line">  func()</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> obj = {</span><br><span class="line">  name: <span class="hljs-string">&quot;why&quot;</span>,</span><br><span class="line">  bar: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>); <span class="hljs-comment">// window</span></span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">foo(obj.bar);</span><br></pre></td></tr></tbody></table></figure>
+<h6 id="2&#x3001;&#x9690;&#x5F0F;&#x7ED1;&#x5B9A;"><a href="#2&#x3001;&#x9690;&#x5F0F;&#x7ED1;&#x5B9A;" class="headerlink" title="2&#x3001;&#x9690;&#x5F0F;&#x7ED1;&#x5B9A;"></a><em>2&#x3001;&#x9690;&#x5F0F;&#x7ED1;&#x5B9A;</em></h6><p>&#x901A;&#x8FC7;&#x8C03;&#x7528;&#x5BF9;&#x8C61;&#x7684;&#x51FD;&#x6570;&#x5B8C;&#x6210;&#x3002;</p>
+<h5 id="&#x6848;&#x4F8B;&#x4E00;&#xFF1A;&#x901A;&#x8FC7;&#x5BF9;&#x8C61;&#x8C03;&#x7528;&#x51FD;&#x6570;"><a href="#&#x6848;&#x4F8B;&#x4E00;&#xFF1A;&#x901A;&#x8FC7;&#x5BF9;&#x8C61;&#x8C03;&#x7528;&#x51FD;&#x6570;" class="headerlink" title="&#x6848;&#x4F8B;&#x4E00;&#xFF1A;&#x901A;&#x8FC7;&#x5BF9;&#x8C61;&#x8C03;&#x7528;&#x51FD;&#x6570;"></a>&#x6848;&#x4F8B;&#x4E00;&#xFF1A;&#x901A;&#x8FC7;&#x5BF9;&#x8C61;&#x8C03;&#x7528;&#x51FD;&#x6570;</h5><ul>
+<li>&#x51FD;&#x6570;foo&#x662F;&#x901A;&#x8FC7;obj.foo()&#x65B9;&#x5F0F;&#x8C03;&#x7528;</li>
+<li>foo&#x8C03;&#x7528;this&#x4F1A;&#x88AB;&#x9690;&#x5F0F;&#x7ED1;&#x5B9A;&#x5230;&#x5BF9;&#x8C61;obj</li>
+</ul>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>); <span class="hljs-comment">// obj&#x5BF9;&#x8C61;</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> obj = {</span><br><span class="line">  name: <span class="hljs-string">&quot;why&quot;</span>,</span><br><span class="line">  foo: foo</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">obj.foo();</span><br></pre></td></tr></tbody></table></figure>
+<h6 id="3&#x3001;&#x663E;&#x793A;&#x7ED1;&#x5B9A;"><a href="#3&#x3001;&#x663E;&#x793A;&#x7ED1;&#x5B9A;" class="headerlink" title="3&#x3001;&#x663E;&#x793A;&#x7ED1;&#x5B9A;"></a><em>3&#x3001;&#x663E;&#x793A;&#x7ED1;&#x5B9A;</em></h6><h5 id="3-1-&#x3001;&#x901A;&#x8FC7;call&#x6216;&#x8005;apply&#x7ED1;&#x5B9A;this&#x5BF9;&#x8C61;"><a href="#3-1-&#x3001;&#x901A;&#x8FC7;call&#x6216;&#x8005;apply&#x7ED1;&#x5B9A;this&#x5BF9;&#x8C61;" class="headerlink" title="3(1)&#x3001;&#x901A;&#x8FC7;call&#x6216;&#x8005;apply&#x7ED1;&#x5B9A;this&#x5BF9;&#x8C61;"></a>3(1)&#x3001;&#x901A;&#x8FC7;call&#x6216;&#x8005;apply&#x7ED1;&#x5B9A;this&#x5BF9;&#x8C61;</h5><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">foo.call(<span class="hljs-built_in">window</span>); <span class="hljs-comment">// window</span></span><br><span class="line">foo.call({<span class="hljs-attr">name</span>: <span class="hljs-string">&quot;why&quot;</span>}); <span class="hljs-comment">// {name: &quot;why&quot;}</span></span><br><span class="line">foo.call(<span class="hljs-number">123</span>); <span class="hljs-comment">// Number&#x5BF9;&#x8C61;,&#x5B58;&#x653E;&#x65F6;123</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">c, d</span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.a + <span class="hljs-built_in">this</span>.b + c + d;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> o = {<span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">3</span>};</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// &#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x7528;&#x4F5C;&#x201C;this&#x201D;&#x7684;&#x5BF9;&#x8C61;</span></span><br><span class="line"><span class="hljs-comment">// &#x5176;&#x4F59;&#x53C2;&#x6570;&#x7528;&#x4F5C;&#x51FD;&#x6570;&#x7684;&#x53C2;&#x6570;</span></span><br><span class="line">add.call(o, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>); <span class="hljs-comment">// 16</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// &#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x7528;&#x4F5C;&#x201C;this&#x201D;&#x7684;&#x5BF9;&#x8C61;</span></span><br><span class="line"><span class="hljs-comment">// &#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#xFF0C;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x4E24;&#x4E2A;&#x6210;&#x5458;&#x7528;&#x4F5C;&#x51FD;&#x6570;&#x53C2;&#x6570;</span></span><br><span class="line">add.apply(o, [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>]); <span class="hljs-comment">// 34</span></span><br></pre></td></tr></tbody></table></figure>
+<h5 id="3-2-&#x3001;bind&#x51FD;&#x6570;"><a href="#3-2-&#x3001;bind&#x51FD;&#x6570;" class="headerlink" title="3(2)&#x3001;bind&#x51FD;&#x6570;"></a>3(2)&#x3001;bind&#x51FD;&#x6570;</h5><p>&#x65B9;&#x6848;&#x4E00;&#xFF1A;&#x624B;&#x5199;&#x4E00;&#x4E2A;&#x8F85;&#x52A9;&#x51FD;&#x6570;</p>
+<ul>
+<li>&#x6211;&#x4EEC;&#x624B;&#x52A8;&#x5199;&#x4E86;&#x4E00;&#x4E2A;bind&#x7684;&#x8F85;&#x52A9;&#x51FD;&#x6570;</li>
+<li>&#x8FD9;&#x4E2A;&#x8F85;&#x52A9;&#x51FD;&#x6570;&#x7684;&#x76EE;&#x7684;&#x662F;&#x5728;&#x6267;&#x884C;foo&#x65F6;&#xFF0C;&#x603B;&#x662F;&#x8BA9;&#x5B83;&#x7684;this&#x7ED1;&#x5B9A;&#x5230;obj&#x5BF9;&#x8C61;&#x4E0A;</li>
+</ul>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> obj = {</span><br><span class="line">  name: <span class="hljs-string">&quot;why&quot;</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bind</span>(<span class="hljs-params">func, obj</span>) </span>{</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-keyword">return</span> func.apply(obj, <span class="hljs-built_in">arguments</span>);</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> bar = bind(foo, obj);</span><br><span class="line"></span><br><span class="line">bar(); <span class="hljs-comment">// obj&#x5BF9;&#x8C61;</span></span><br></pre></td></tr></tbody></table></figure>
+<p>&#x65B9;&#x6848;&#x4E8C;&#xFF1A;&#x4F7F;&#x7528;Function.prototype.bind</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> obj = {</span><br><span class="line">  name: <span class="hljs-string">&quot;why&quot;</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> bar = foo.bind(obj);</span><br><span class="line"></span><br><span class="line">bar(); <span class="hljs-comment">// obj&#x5BF9;&#x8C61;</span></span><br></pre></td></tr></tbody></table></figure>
+<h5 id="3-3-&#x3001;&#x5185;&#x7F6E;&#x51FD;&#x6570;"><a href="#3-3-&#x3001;&#x5185;&#x7F6E;&#x51FD;&#x6570;" class="headerlink" title="3(3)&#x3001;&#x5185;&#x7F6E;&#x51FD;&#x6570;"></a>3(3)&#x3001;&#x5185;&#x7F6E;&#x51FD;&#x6570;</h5><p><strong>&#x6848;&#x4F8B;&#x4E00;&#xFF1A;setTimeout</strong></p>
+<ul>
+<li>setTimeout&#x4E2D;&#x4F1A;&#x4F20;&#x5165;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x4E2D;&#x7684;this&#x901A;&#x5E38;&#x662F;window</li>
+</ul>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>); <span class="hljs-comment">// window</span></span><br><span class="line">}, <span class="hljs-number">1000</span>);</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x4E3A;&#x4EC0;&#x4E48;&#x8FD9;&#x91CC;&#x662F;window&#x5462;&#xFF1F;</p>
+<ul>
+<li>&#x8FD9;&#x4E2A;&#x548C;setTimeout&#x6E90;&#x7801;&#x7684;&#x5185;&#x90E8;&#x8C03;&#x7528;&#x6709;&#x5173;&#xFF1B;</li>
+<li>setTimeout&#x5185;&#x90E8;&#x662F;&#x901A;&#x8FC7;apply&#x8FDB;&#x884C;&#x7ED1;&#x5B9A;&#x7684;this&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x4E14;&#x7ED1;&#x5B9A;&#x7684;&#x662F;&#x5168;&#x5C40;&#x5BF9;&#x8C61;&#xFF1B;</li>
+</ul>
+<p><strong>&#x6848;&#x4F8B;&#x4E8C;&#xFF1A;&#x6570;&#x7EC4;&#x7684;forEach</strong></p>
+<p>&#x6570;&#x7EC4;&#x6709;&#x4E00;&#x4E2A;&#x9AD8;&#x9636;&#x51FD;&#x6570;forEach&#xFF0C;&#x7528;&#x4E8E;&#x51FD;&#x6570;&#x7684;&#x904D;&#x5386;&#xFF1A;</p>
+<ul>
+<li>&#x5728;forEach&#x4E2D;&#x4F20;&#x5165;&#x7684;&#x51FD;&#x6570;&#x6253;&#x5370;&#x7684;&#x4E5F;&#x662F;Window&#x5BF9;&#x8C61;&#xFF1B;</li>
+<li>&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#x4F20;&#x5165;&#x7684;&#x51FD;&#x6570;&#x662F;&#x81EA;&#x52A8;&#x8C03;&#x7528;&#x51FD;&#x6570;&#xFF08;&#x9ED8;&#x8BA4;&#x7ED1;&#x5B9A;&#xFF09;&#xFF1B;</li>
+</ul>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> names = [<span class="hljs-string">&quot;abc&quot;</span>, <span class="hljs-string">&quot;cba&quot;</span>, <span class="hljs-string">&quot;nba&quot;</span>];</span><br><span class="line">names.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>); <span class="hljs-comment">// &#x4E09;&#x6B21;window</span></span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>&#x6539;&#x53D8;&#x8BE5;&#x51FD;&#x6570;&#x7684;this&#x6307;&#x5411;</li>
+</ul>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> names = [<span class="hljs-string">&quot;abc&quot;</span>, <span class="hljs-string">&quot;cba&quot;</span>, <span class="hljs-string">&quot;nba&quot;</span>];</span><br><span class="line"><span class="hljs-keyword">var</span> obj = {<span class="hljs-attr">name</span>: <span class="hljs-string">&quot;why&quot;</span>};</span><br><span class="line">names.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>); <span class="hljs-comment">// &#x4E09;&#x6B21;obj&#x5BF9;&#x8C61;</span></span><br><span class="line">}, obj);</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="&#x6848;&#x4F8B;&#x4E09;&#xFF1A;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;DOM&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x51FD;&#x6570;"><a href="#&#x6848;&#x4F8B;&#x4E09;&#xFF1A;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;DOM&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x51FD;&#x6570;" class="headerlink" title="&#x6848;&#x4F8B;&#x4E09;&#xFF1A;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;DOM&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x51FD;&#x6570;"></a>&#x6848;&#x4F8B;&#x4E09;&#xFF1A;<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this#%E4%BD%9C%E4%B8%BA%E4%B8%80%E4%B8%AAdom%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0">&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;DOM&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x51FD;&#x6570;</a></h5><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// &#x88AB;&#x8C03;&#x7528;&#x65F6;&#xFF0C;&#x5C06;&#x5173;&#x8054;&#x7684;&#x5143;&#x7D20;&#x53D8;&#x6210;&#x84DD;&#x8272;</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bluify</span>(<span class="hljs-params">e</span>)</span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span> === e.currentTarget); <span class="hljs-comment">// &#x603B;&#x662F; true</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">// &#x5F53; currentTarget &#x548C; target &#x662F;&#x540C;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x65F6;&#x4E3A; true</span></span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span> === e.target);</span><br><span class="line">  <span class="hljs-built_in">this</span>.style.backgroundColor = <span class="hljs-string">&apos;#A5D9F3&apos;</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// &#x83B7;&#x53D6;&#x6587;&#x6863;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x5143;&#x7D20;&#x7684;&#x5217;&#x8868;</span></span><br><span class="line"><span class="hljs-keyword">var</span> elements = <span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">&apos;*&apos;</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// &#x5C06;bluify&#x4F5C;&#x4E3A;&#x5143;&#x7D20;&#x7684;&#x70B9;&#x51FB;&#x76D1;&#x542C;&#x51FD;&#x6570;&#xFF0C;&#x5F53;&#x5143;&#x7D20;&#x88AB;&#x70B9;&#x51FB;&#x65F6;&#xFF0C;&#x5C31;&#x4F1A;&#x53D8;&#x6210;&#x84DD;&#x8272;</span></span><br><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span> ; i&lt;elements.length ; i++){</span><br><span class="line">  elements[i].addEventListener(<span class="hljs-string">&apos;click&apos;</span>, bluify, <span class="hljs-literal">false</span>);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x83B7;&#x53D6;&#x5143;&#x7D20;&#x8282;&#x70B9;&#xFF0C;&#x5E76;&#x4E14;&#x76D1;&#x542C;&#x70B9;&#x51FB;&#xFF1A;</p>
+<ul>
+<li>&#x5728;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#x7684;&#x56DE;&#x8C03;&#x4E2D;&#xFF0C;this&#x6307;&#x5411;&#x8C01;&#x5462;&#xFF1F;box&#x5BF9;&#x8C61;&#xFF1B;</li>
+<li>&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x5728;&#x53D1;&#x751F;&#x70B9;&#x51FB;&#x65F6;&#xFF0C;&#x6267;&#x884C;&#x4F20;&#x5165;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x88AB;&#x8C03;&#x7528;&#x65F6;&#xFF0C;&#x4F1A;&#x5C06;box&#x5BF9;&#x8C61;&#x7ED1;&#x5B9A;&#x5230;&#x8BE5;&#x51FD;&#x6570;&#x4E2D;&#xFF1B;</li>
+</ul>
+<figure class="highlight html hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> box = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;.box&quot;</span>);</span><br><span class="line">box.onclick = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>); <span class="hljs-comment">// box&#x5BF9;&#x8C61;</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h6 id="4&#x3001;new&#x7ED1;&#x5B9A;"><a href="#4&#x3001;new&#x7ED1;&#x5B9A;" class="headerlink" title="4&#x3001;new&#x7ED1;&#x5B9A;"></a><em>4&#x3001;new&#x7ED1;&#x5B9A;</em></h6><p>JavaScript&#x4E2D;&#x7684;&#x51FD;&#x6570;&#x53EF;&#x4EE5;&#x5F53;&#x505A;&#x4E00;&#x4E2A;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x6765;&#x4F7F;&#x7528;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x4F7F;&#x7528;new&#x5173;&#x952E;&#x5B57;&#x3002;</p>
+<p>&#x4F7F;&#x7528;new&#x5173;&#x952E;&#x5B57;&#x6765;&#x8C03;&#x7528;&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x4F1A;&#x6267;&#x884C;&#x5982;&#x4E0B;&#x7684;&#x64CD;&#x4F5C;&#xFF1A;</p>
+<p>1.&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5168;&#x65B0;&#x7684;&#x5BF9;&#x8C61;&#xFF1B;</p>
+<p>2.&#x8FD9;&#x4E2A;&#x65B0;&#x5BF9;&#x8C61;&#x4F1A;&#x88AB;&#x6267;&#x884C;Prototype&#x8FDE;&#x63A5;&#xFF1B;</p>
+<p>3.&#x8FD9;&#x4E2A;&#x65B0;&#x5BF9;&#x8C61;&#x4F1A;&#x7ED1;&#x5B9A;&#x5230;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x7684;this&#x4E0A;&#xFF08;this&#x7684;&#x7ED1;&#x5B9A;&#x5728;&#x8FD9;&#x4E2A;&#x6B65;&#x9AA4;&#x5B8C;&#x6210;&#xFF09;&#xFF1B;</p>
+<p>4.&#x5982;&#x679C;&#x51FD;&#x6570;&#x6CA1;&#x6709;&#x8FD4;&#x56DE;&#x5176;&#x4ED6;&#x5BF9;&#x8C61;&#xFF0C;&#x8868;&#x8FBE;&#x5F0F;&#x4F1A;&#x8FD4;&#x56DE;&#x8FD9;&#x4E2A;&#x65B0;&#x5BF9;&#x8C61;&#x3002;</p>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// &#x521B;&#x5EFA;Person</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params">name</span>) </span>{</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>); <span class="hljs-comment">// Person {}</span></span><br><span class="line">  <span class="hljs-built_in">this</span>.name = name; <span class="hljs-comment">// Person {name: &quot;why&quot;}</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> p = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">&quot;why&quot;</span>);</span><br><span class="line"><span class="hljs-built_in">console</span>.log(p);</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="&#x7BAD;&#x5934;&#x51FD;&#x6570;&#x91CC;&#x7684;this"><a href="#&#x7BAD;&#x5934;&#x51FD;&#x6570;&#x91CC;&#x7684;this" class="headerlink" title="&#x7BAD;&#x5934;&#x51FD;&#x6570;&#x91CC;&#x7684;this"></a>&#x7BAD;&#x5934;&#x51FD;&#x6570;&#x91CC;&#x7684;this</h4><ul>
+<li>&#x5728;&#x56DE;&#x8C03;&#x76F4;&#x63A5;&#x62FF;&#x5230;&#x7684;this&#x662F;window&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5728;&#x5916;&#x5C42;&#x5B9A;&#x4E49;&#xFF1A;<code>var _this = this</code></li>
+<li>&#x5728;setTimeout&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x4E2D;&#x4F7F;&#x7528;_this&#x5C31;&#x4EE3;&#x8868;&#x4E86;obj&#x5BF9;&#x8C61;</li>
+</ul>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> obj = {</span><br><span class="line">  data: [],</span><br><span class="line">  getData: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-keyword">var</span> _this = <span class="hljs-built_in">this</span>;</span><br><span class="line">    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">      <span class="hljs-comment">// &#x6A21;&#x62DF;&#x83B7;&#x53D6;&#x5230;&#x7684;&#x6570;&#x636E;</span></span><br><span class="line">      <span class="hljs-keyword">var</span> res = [<span class="hljs-string">&quot;abc&quot;</span>, <span class="hljs-string">&quot;cba&quot;</span>, <span class="hljs-string">&quot;nba&quot;</span>];</span><br><span class="line">      _this.data.push(...res);</span><br><span class="line">    }, <span class="hljs-number">1000</span>);</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">obj.getData();</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x5728;ES6&#x4E4B;&#x524D;&#x662F;&#x6211;&#x4EEC;&#x6700;&#x5E38;&#x7528;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x4ECE;ES6&#x5F00;&#x59CB;&#xFF0C;&#x6211;&#x4EEC;&#x4F1A;&#x4F7F;&#x7528;&#x7BAD;&#x5934;&#x51FD;&#x6570;&#xFF1A;</p>
+<ul>
+<li>&#x4E3A;&#x4EC0;&#x4E48;&#x5728;setTimeout&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x4E2D;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;this&#x5462;&#xFF1F;</li>
+<li>&#x56E0;&#x4E3A;&#x7BAD;&#x5934;&#x51FD;&#x6570;&#x5E76;&#x4E0D;&#x7ED1;&#x5B9A;this&#x5BF9;&#x8C61;&#xFF0C;&#x90A3;&#x4E48;this&#x5F15;&#x7528;&#x5C31;&#x4F1A;&#x4ECE;&#x4E0A;&#x5C42;&#x4F5C;&#x7528;&#x57DF;&#x4E2D;&#x627E;&#x5230;&#x5BF9;&#x5E94;&#x7684;this</li>
+</ul>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> obj = {</span><br><span class="line">  data: [],</span><br><span class="line">  getData: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {</span><br><span class="line">      <span class="hljs-comment">// &#x6A21;&#x62DF;&#x83B7;&#x53D6;&#x5230;&#x7684;&#x6570;&#x636E;</span></span><br><span class="line">      <span class="hljs-keyword">var</span> res = [<span class="hljs-string">&quot;abc&quot;</span>, <span class="hljs-string">&quot;cba&quot;</span>, <span class="hljs-string">&quot;nba&quot;</span>];</span><br><span class="line">      <span class="hljs-built_in">this</span>.data.push(...res);</span><br><span class="line">    }, <span class="hljs-number">1000</span>);</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">obj.getData();</span><br></pre></td></tr></tbody></table></figure>
+<p>&#x601D;&#x8003;&#xFF1A;&#x5982;&#x679C;getData&#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x7BAD;&#x5934;&#x51FD;&#x6570;&#xFF0C;&#x90A3;&#x4E48;setTimeout&#x4E2D;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x4E2D;&#x7684;this&#x6307;&#x5411;&#x8C01;&#x5462;&#xFF1F;</p>
+<ul>
+<li>&#x7B54;&#x6848;&#x662F;window&#xFF1B;</li>
+<li>&#x4F9D;&#x7136;&#x662F;&#x4E0D;&#x65AD;&#x7684;&#x4ECE;&#x4E0A;&#x5C42;&#x4F5C;&#x7528;&#x57DF;&#x627E;&#xFF0C;&#x90A3;&#x4E48;&#x627E;&#x5230;&#x4E86;&#x5168;&#x5C40;&#x4F5C;&#x7528;&#x57DF;&#xFF1B;</li>
+<li>&#x5728;&#x5168;&#x5C40;&#x4F5C;&#x7528;&#x57DF;&#x5185;&#xFF0C;this&#x4EE3;&#x8868;&#x7684;&#x5C31;&#x662F;window</li>
+</ul>
+<figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> obj = {</span><br><span class="line">  data: [],</span><br><span class="line">  getData: <span class="hljs-function">() =&gt;</span> {</span><br><span class="line">    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {</span><br><span class="line">      <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>); <span class="hljs-comment">// window</span></span><br><span class="line">    }, <span class="hljs-number">1000</span>);</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">obj.getData();</span><br></pre></td></tr></tbody></table></figure>
+
+
+<h2 id="Ps-&#x6458;&#x6284;&#x90E8;&#x5206;&#x6587;&#x7AE0;&#x5185;&#x5BB9;&#x4EC5;&#x4F9B;&#x4E2A;&#x4EBA;&#x5B66;&#x4E60;&#x4F7F;&#x7528;&#x3002;"><a href="#Ps-&#x6458;&#x6284;&#x90E8;&#x5206;&#x6587;&#x7AE0;&#x5185;&#x5BB9;&#x4EC5;&#x4F9B;&#x4E2A;&#x4EBA;&#x5B66;&#x4E60;&#x4F7F;&#x7528;&#x3002;" class="headerlink" title="Ps:&#x6458;&#x6284;&#x90E8;&#x5206;&#x6587;&#x7AE0;&#x5185;&#x5BB9;&#x4EC5;&#x4F9B;&#x4E2A;&#x4EBA;&#x5B66;&#x4E60;&#x4F7F;&#x7528;&#x3002;"></a>Ps:&#x6458;&#x6284;&#x90E8;&#x5206;&#x6587;&#x7AE0;&#x5185;&#x5BB9;&#x4EC5;&#x4F9B;&#x4E2A;&#x4EBA;&#x5B66;&#x4E60;&#x4F7F;&#x7528;&#x3002;</h2><h3 id="&#x53C2;&#x8003;&#x6587;&#x6863;"><a href="#&#x53C2;&#x8003;&#x6587;&#x6863;" class="headerlink" title="&#x53C2;&#x8003;&#x6587;&#x6863;"></a>&#x53C2;&#x8003;&#x6587;&#x6863;</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/hYm0JgBI25grNG_2sCRlTA">&#x524D;&#x7AEF;&#x9762;&#x8BD5;&#x4E4B;&#x5F7B;&#x5E95;&#x641E;&#x61C2;this&#x6307;&#x5411;</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this">MDN</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.fundebug.com/2019/06/18/arrow-function-this/">JavaScript&#x6DF1;&#x5165;&#x6D45;&#x51FA;&#x7B2C;1&#x8BFE;&#xFF1A;&#x7BAD;&#x5934;&#x51FD;&#x6570;&#x4E2D;&#x7684;this&#x7A76;&#x7ADF;&#x662F;&#x4EC0;&#x4E48;&#x9B3C;&#xFF1F;</a></p>
+</blockquote>
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E7%AC%94%E8%AE%B0/">#笔记</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2021-5-%E5%89%8D%E7%AB%AF/Vue-%E6%B7%B1%E5%85%A5vue3-typescript%E6%8A%80%E6%9C%AF%E6%A0%88-vue3%E5%88%9D%E4%BD%93%E9%AA%8C%EF%BC%88%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80%EF%BC%89/">深入Vue3+TypeScript技术栈:Vue3初体验（学习笔记一）</a>
+            
+        </span>
+    </div>
+    
+</article>
+<!-- 
+
+<div class="sharebox">
+    
+<div class="sharethis-inline-share-buttons"></div>
+<script type='text/javascript'  src="https://beian.aliyun.com/"  async='async' ></script>
+
+</div>
+ -->
+
+<!--  -->
+
+
+    <section id="comments" class="comments">
+      <!-- <style>
+        .comments{margin:30px;padding:10px;background:#fff}
+        @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+      </style> -->
+      
+<div id="valine-thread"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread',
+        appId: 'HGcAdkvh1F76FbC9DbDaAwcy-gzGzoHsz',
+        appKey: 'hBF7dmM8HIfhavSpx0FDbhWi',
+        notify: 'true',
+        verify: 'true',
+        avatar: 'robohash',
+        placeholder: '评论没有好果子吃的！',
+        meta: ['nick', 'mail'],
+        visitor: true,
+        // lang: ''
+    })
+</script>
+
+
+    </section>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2021 深入Vue3+TypeScript技术栈:Vue3基础语法（学习笔记二）的普通底部 &nbsp; <a href="http://beian.miit.gov.cn" target="_blank">蜀ICP备2020034442号</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>
